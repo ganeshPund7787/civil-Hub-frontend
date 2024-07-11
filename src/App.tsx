@@ -3,7 +3,7 @@ import "./global.css";
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/civilUser/SignUp";
 import SignIn from "./pages/SignIn";
 
 const App: React.FC = () => {
