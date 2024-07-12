@@ -81,13 +81,22 @@ const SignIn = () => {
               )}
             />
 
-            <FormDescription className="text-sm">
-              Looking to join us?
-              <Link to={"/sign-up"} className="text-blue-500">
-                {" "}
-                Register now!
-              </Link>
-            </FormDescription>
+            <div className="">
+              <FormDescription className="text-sm">
+                Looking to join us? Register now!
+                <Link to={"/sign-up-user"} className="text-blue-500">
+                  {" "}
+                  as a freelancer
+                </Link>
+              </FormDescription>
+              <FormDescription className="text-sm">
+                Looking to join us? Register now!
+                <Link to={"/sign-up"} className="text-blue-500">
+                  {" "}
+                  as a client
+                </Link>
+              </FormDescription>
+            </div>
             <Button
               type="submit"
               disabled={loading}

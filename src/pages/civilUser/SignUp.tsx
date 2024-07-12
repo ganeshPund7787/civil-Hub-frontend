@@ -202,6 +202,13 @@ const SignUp = () => {
                 login
               </Link>
             </FormDescription>
+            <FormDescription className="text-sm">
+              back to select  { " " }
+              <Link to="/select-role" className="text-blue-500">
+                 role
+              </Link>
+            </FormDescription>
+
             <Button
               type="submit"
               disabled={isLoading}
