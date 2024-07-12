@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: rgb(15, 10, 10);
+  /* background-color: rgb(15, 10, 10); */
   color: #fff;
   transition: background-color 0.3s, color 0.3s;
 }

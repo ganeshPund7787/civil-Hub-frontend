@@ -6,7 +6,9 @@ export interface PersonState {
 }
 
 const initialState: PersonState = {
-  CurrentCivilUser: null,
+  CurrentCivilUser: localStorage.getItem("CurrentCivilUser")
+    ? JSON.parse(localStorage.getItem("CurrentCivilUser") as string)
+    : null,
   loading: false,
 };
 

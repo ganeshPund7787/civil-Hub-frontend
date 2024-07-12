@@ -55,6 +55,7 @@ export const useCivilApi = () => {
     }
     notify("success", data.message);
     dispatch(fetchSuccess(data?.user || null));
+    navigate("/");
     return data;
   };
 
