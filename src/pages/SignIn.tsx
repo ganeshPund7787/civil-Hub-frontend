@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
+import { useCivilApi } from "@/API/useCivilUserApi";
+import { useAppSelectore } from "@/App/store";
 
 const formSchema = z.object({
   email: z.string().trim().min(5, "required"),
@@ -24,6 +26,9 @@ const formSchema = z.object({
 export type UserFormData = z.infer<typeof formSchema>;
 
 const SignIn = () => {
+  const { SignInCivilUser } = useCivilApi();
+
+  const { loading } = useAppSelectore((state) => state.user);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,7 +38,7 @@ const SignIn = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    SignInCivilUser(values);
   };
 
   return (
@@ -85,9 +90,10 @@ const SignIn = () => {
             </FormDescription>
             <Button
               type="submit"
-              className="bg-cyan-400 mt-7 shadow-lg hover:text-white text-black w-full md:w-60 rounded-[1em] border"
+              disabled={loading}
+              className="bg-cyan-400 disabled:cursor-not-allowed mt-7 shadow-lg hover:text-white text-black w-full md:w-60 rounded-[1em] border"
             >
-              SIGN UP
+              {loading ? "LOADING..." : "SIGN UP"}
             </Button>
           </div>
         </div>

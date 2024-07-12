@@ -2,9 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./global.css";
+import { Provider } from "react-redux";
+import { store } from "./App/store.ts";
+
+export const BACKEND_API_URL = import.meta.env.VITE_BACKEND_URL as string;
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );

@@ -15,19 +15,28 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
+import { useCivilApi } from "@/API/useCivilUserApi";
 
 const formSchema = z.object({
-  fullName: z.string().trim().min(5, "required"),
-  email: z.string().trim().min(5, "required"),
-  password: z.string().trim().min(3, "required"),
-  city: z.string().trim().min(1, "required"),
-  state: z.string().trim().min(1, "required"),
-  country: z.string().trim().min(1, "required"),
+  fullName: z.string().trim().min(5, "Full name is required"),
+  email: z.string().trim().min(5, "Email is required"),
+  password: z.string().trim().min(3, "Password is required"),
+  city: z.string().trim().min(1, "City is required"),
+  state: z.string().trim().min(1, "State is required"),
+  country: z.string().trim().min(1, "Country is required"),
+  dateOfBirth: z
+    .string()
+    .refine((val) => !isNaN(Date.parse(val)), {
+      message: "Invalid date format",
+    })
+    .transform((str) => new Date(str)),
 });
 
-export type UserFormData = z.infer<typeof formSchema>;
+export type UserFormDataSignUp = z.infer<typeof formSchema>;
 
 const SignUp = () => {
+  const { SignUpCivilUser, isLoading } = useCivilApi();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,11 +46,13 @@ const SignUp = () => {
       city: "",
       state: "",
       country: "",
+      dateOfBirth: undefined,
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
+    SignUpCivilUser(values);
   };
 
   return (
@@ -54,15 +65,14 @@ const SignUp = () => {
           <div className="space-y-4 md:w-96 border p-5 md:mx-10 rounded bg-slate-800">
             <div>
               <h2 className="text-3xl font-semibold text-center text-cyan-400">
-                {" "}
-                Sign Up{" "}
+                Sign Up
               </h2>
             </div>
             <FormField
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>FullName </FormLabel>
+                  <FormLabel>FullName</FormLabel>
                   <FormMessage className="text-red-600" />
                   <FormControl>
                     <Input
@@ -79,7 +89,7 @@ const SignUp = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email </FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormMessage className="text-red-600" />
                   <FormControl>
                     <Input
@@ -96,12 +106,32 @@ const SignUp = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password </FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormMessage className="text-red-600" />
                   <FormControl>
                     <Input
                       placeholder="Enter Your Password"
                       className="rounded-[5px]"
+                      autoFocus
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              name="dateOfBirth"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pick Your Birth Date</FormLabel>
+                  <br />
+                  <FormMessage className="text-red-600" />
+                  <FormControl>
+                    <input
+                      type="date"
+                      placeholder="Enter Your Password"
+                      className="rounded-[5px] bg-slate-600 px-2 text-white"
                       autoFocus
                       {...field}
                     />
@@ -167,17 +197,17 @@ const SignUp = () => {
               />
             </div>
             <FormDescription className="text-sm">
-              Already member ?
-              <Link to={"/sign-in"} className="text-blue-500">
-                {" "}
+              Already a member?{" "}
+              <Link to="/sign-in" className="text-blue-500">
                 login
               </Link>
             </FormDescription>
             <Button
               type="submit"
-              className="bg-cyan-400 mt-7 shadow-lg hover:text-white text-black w-full md:w-60 rounded-[1em] border"
+              disabled={isLoading}
+              className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"
             >
-              SIGN UP
+              {isLoading ? "LOADING...." : "SIGN UP"}
             </Button>
           </div>
         </div>
