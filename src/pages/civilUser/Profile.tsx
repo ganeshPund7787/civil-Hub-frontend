@@ -1,13 +1,14 @@
 import { useAppSelectore } from "@/App/store";
 import { SlLocationPin } from "react-icons/sl";
-import { IoAdd } from "react-icons/io5";
 import EditLanguage from "@/components/civilUser/EditLanguage";
+import AddLanguage from "@/components/civilUser/AddLanguage";
+import AddEducation from "@/components/civilUser/AddEducation";
 
 const Profile = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
   console.log(CurrentCivilUser.languages.length);
   return (
-    <div className="flex flex-col min-h-screen p-5">
+    <div className="flex flex-col min-h-full p-5">
       <div className="flex items-center min-h-full rounded-t-[1rem] max-w-full p-5 border-b-2 border-slate-500">
         <div className="avatar">
           {/* online */}
@@ -27,23 +28,27 @@ const Profile = () => {
       </div>
 
       <div className=" flex flex-col md:flex-row">
-        <div className="w-full md:w-[30%]">
-          <div className="flex h-full items-center p-6">
-            <div className="w-full">
-              <div className="flex justify-between items-center">
-                <h1 className="text-2xl tracking-wide">Languages</h1>
-                <p className="flex gap-4 items-center">
-                  <IoAdd
-                    className="border cursor-pointer p-2 border-cyan-500 rounded-full"
-                    size={40}
-                  />
-                  <EditLanguage></EditLanguage>
-                </p>
-              </div>
-              {CurrentCivilUser.languages &&
-                CurrentCivilUser?.languages?.map((language: string) => (
-                  <span>{language}</span>
-                ))}
+        <div className="w-full mt-5 md:w-[30%]">
+          <div className="flex items-center p-6">
+            <div className="flex w-full justify-between items-center">
+              <h1 className="text-2xl tracking-wide">Languages</h1>
+              <p className="flex gap-4 items-center">
+                <AddLanguage />
+                <EditLanguage />
+              </p>
+            </div>
+            {CurrentCivilUser.languages &&
+              CurrentCivilUser?.languages?.map((language: string) => (
+                <span>{language}</span>
+              ))}
+          </div>
+
+          <div className="flex items-center p-6">
+            <div className="flex w-full justify-between items-center">
+              <h1 className="text-2xl tracking-wide">Education</h1>
+              <p className="flex gap-4 items-center">
+                <AddEducation />
+              </p>
             </div>
           </div>
         </div>
