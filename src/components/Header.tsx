@@ -17,7 +17,7 @@ const Header: React.FC = () => {
           <h1 className="text-sm text-cyan-400 md:text-2xl font-semibold">
             civilHub
           </h1>
-          <div className="flex mx-8 gap-5">
+          <div className="md:flex hidden mx-8 gap-5">
             <Link className="active:text-cyan-500" to={"/"}>
               Find Work
             </Link>
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
             <Link to={"/"}>Messages</Link>
           </div>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="md:flex hidden items-center gap-5">
           <div className="flex items-center rounded-[1rem] border border-slate-600 px-2 w-72 ">
             <Input
               type="text"
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
             </Link>
           </Avatar>
         </div>
-        <div className="">
+        <div className="md:hidden block">
           <MobileNav />
         </div>
       </nav>
