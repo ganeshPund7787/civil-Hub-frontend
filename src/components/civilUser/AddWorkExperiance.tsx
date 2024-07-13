@@ -11,7 +11,7 @@ import { Label } from "@radix-ui/react-label";
 import { IoAdd } from "react-icons/io5";
 import { Input } from "../ui/input";
 
-const AddEducation = () => {
+const AddWorkExperiance = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -25,53 +25,28 @@ const AddEducation = () => {
 
       <DialogContent>
         <DialogTitle className="text-2xl">
-          Add Your Education Detail's{" "}
+          Add Your Past Experiance{" "}
         </DialogTitle>
         <div className="grid grid-rows-2 md:gap-4 py-3">
           <div className="flex gap-1 md:gap-5 md:h-0 flex-col md:flex-row">
             <div className="">
               <Label htmlFor="name" className="text-right font-semibold">
-                Degree :
+                jobTitle :
               </Label>
               <Input
                 id="name"
-                placeholder="Degree Name"
+                placeholder="Your post name"
                 className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
               />
             </div>
 
             <div className="">
               <Label htmlFor="name" className="text-right font-semibold">
-                Field Of Study :
+                company :
               </Label>
               <Input
                 id="name"
-                defaultValue={"Civil Engineering"}
-                placeholder="type of education"
-                className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-1 md:gap-5 flex-col md:flex-row">
-            <div className="">
-              <Label htmlFor="name" className="text-right font-semibold">
-                University :
-              </Label>
-              <Input
-                id="name"
-                placeholder="Enter Your univercity"
-                className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
-              />
-            </div>
-
-            <div className="">
-              <Label htmlFor="name" className="text-right font-semibold">
-                School Name :
-              </Label>
-              <Input
-                id="name"
-                placeholder="Enter school name"
+                placeholder="company name"
                 className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
               />
             </div>
@@ -80,19 +55,42 @@ const AddEducation = () => {
           <div className="flex gap-1 md:gap-5 flex-col md:flex-row">
             <div className="">
               <Label htmlFor="name" className="text-right font-semibold">
-                Duration of the course :
+                startDate :
               </Label>
               <Input
                 id="name"
-                defaultValue={"3 Years"}
-                placeholder="Enter duration"
+                type="date"
                 className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
               />
             </div>
 
             <div className="">
               <Label htmlFor="name" className="text-right font-semibold">
-                Location of the School :
+                endDate :
+              </Label>
+              <Input
+                id="name"
+                type="date"
+                className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-1 md:gap-5 flex-col md:flex-row">
+            <div className="">
+              <Label htmlFor="name" className="text-right font-semibold">
+                location :
+              </Label>
+              <Input
+                id="name"
+                placeholder="Enter company location"
+                className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
+              />
+            </div>
+
+            <div className="">
+              <Label htmlFor="name" className="text-right font-semibold">
+                achievements :
               </Label>
               <Input
                 id="name"
@@ -119,4 +117,4 @@ const AddEducation = () => {
   );
 };
 
-export default AddEducation;
+export default AddWorkExperiance;
