@@ -14,9 +14,7 @@ const Header: React.FC = () => {
     <>
       <nav className="flex justify-between p-4">
         <div className="flex gap-5 items-center">
-          <h1 className="text-sm text-cyan-400 md:text-2xl font-semibold">
-            civilHub
-          </h1>
+          <h1 className="text-3xl text-cyan-400  font-semibold">civilHub</h1>
           <div className="md:flex hidden mx-8 gap-5">
             <Link className="active:text-cyan-500" to={"/"}>
               Find Work
