@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   console.log(CurrentCivilUser);
   return (
     <>
-      <nav className="flex justify-between p-4">
+      <nav className="flex sticky justify-between p-4">
         <div className="flex gap-5 items-center">
           <h1 className="text-3xl text-cyan-400  font-semibold">civilHub</h1>
           <div className="md:flex hidden mx-8 gap-5">

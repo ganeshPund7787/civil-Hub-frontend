@@ -87,18 +87,6 @@ const AddWorkExperiance = () => {
                 className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
               />
             </div>
-
-            <div className="">
-              <Label htmlFor="name" className="text-right font-semibold">
-                achievements :
-              </Label>
-              <Input
-                id="name"
-                defaultValue={"india"}
-                placeholder="Enter location"
-                className="col-span-3 my-2 border-2 focus:border-white rounded border-slate-500"
-              />
-            </div>
           </div>
         </div>
         <DialogFooter>
