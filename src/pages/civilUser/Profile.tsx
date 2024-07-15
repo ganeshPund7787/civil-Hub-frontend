@@ -9,13 +9,15 @@ import { Button } from "@/components/ui/button";
 import { IoAdd } from "react-icons/io5";
 import SkillsCarousel from "@/components/civilUser/SkillsCarousel";
 import AddProject from "@/components/civilUser/AddProject";
+import UpdateProfileHead from "@/components/civilUser/UpdateProfileHead";
 
 const Profile = () => {
-  const { CurrentCivilUser } = useAppSelectore((state) => state.user);
-  console.log("Experiance", CurrentCivilUser.workExperience.length);
+  const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
+
   return (
     <div className="flex flex-col min-h-full md:p-5">
-      <div className="flex justify-between items-center min-h-full rounded-t-[1rem] max-w-full p-5 border-b-2 border-slate-500">
+      <div className="flex justify-between items-center min-h-full rounded-t-[1rem] max-w-full p-1 md:p-5 border-b-2 border-slate-500">
+        {/* Profile Img, name and Address */}
         <div className="flex flex-col justify-center md:flex-row">
           <div className="avatar">
             {/* online */}
@@ -33,12 +35,14 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <IoAdd
-          className="border relative right-0 p-1 border-cyan-500 hover:bg-opacity-30 rounded-full"
-          size={40}
-        />
+
+        {/* Profile Head & Update Button */}
+        <div className="cursor-pointer relative right-0 p-2 border-cyan-500 hover:bg-opacity-30 rounded-full">
+          <UpdateProfileHead user={CurrentCivilUser} loading={loading} />
+        </div>
       </div>
 
+      {/* User language, Skill, Work Experiance & Education section */}
       <div className="flex flex-col md:flex-row">
         <div className="w-full mt-5 md:w-[30%]">
           <div className="flex items-center p-6">
@@ -48,7 +52,7 @@ const Profile = () => {
               </h1>
               <p className="flex items-center">
                 <AddLanguage />
-                <EditLanguage />
+                {/* <EditLanguage /> */}
               </p>
             </div>
             {CurrentCivilUser.languages &&
@@ -97,6 +101,7 @@ const Profile = () => {
         </div>
       </div>
 
+      {/* Certifications Section */}
       <div className="flex mt-5 flex-col min-h-full md:p-5">
         <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
           <div className="flex items-center justify-between p-5">
@@ -130,6 +135,7 @@ const Profile = () => {
         </div>
       </div>
 
+      {/* Project Section */}
       <div className="flex mt-5 flex-col min-h-full md:p-5">
         <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
           <div className="flex items-center justify-between p-5">
@@ -155,6 +161,7 @@ const Profile = () => {
         </div>
       </div>
 
+      {/* User Activity Section like posts */}
       <div className="flex mt-5 flex-col min-h-full md:p-5">
         <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
           <div className="flex items-center justify-between p-5">

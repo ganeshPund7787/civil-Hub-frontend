@@ -1,3 +1,4 @@
+import { CivilUserType } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface PersonState {
@@ -22,7 +23,15 @@ export const civilUserSlice = createSlice({
     fetchFail: (state) => {
       state.loading = false;
     },
-    fetchSuccess: (state, action: PayloadAction<any>) => {
+    fetchSuccess: (state, action: PayloadAction<CivilUserType>) => {
+      state.loading = false;
+      state.CurrentCivilUser = action.payload;
+      localStorage.setItem("CurrentCivilUser", JSON.stringify(action.payload));
+    },
+    updateFail: (state) => {
+      state.loading = false;
+    },
+    updateSuccess: (state, action: PayloadAction<CivilUserType>) => {
       state.loading = false;
       state.CurrentCivilUser = action.payload;
       localStorage.setItem("CurrentCivilUser", JSON.stringify(action.payload));
@@ -30,5 +39,11 @@ export const civilUserSlice = createSlice({
   },
 });
 
-export const { fetchStart, fetchFail, fetchSuccess } = civilUserSlice.actions;
+export const {
+  fetchStart,
+  fetchFail,
+  fetchSuccess,
+  updateFail,
+  updateSuccess,
+} = civilUserSlice.actions;
 export default civilUserSlice.reducer;

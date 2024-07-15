@@ -9,7 +9,7 @@ import MobileNav from "./MobNav";
 
 const Header: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
-  console.log(CurrentCivilUser);
+
   return (
     <>
       <nav className="flex sticky justify-between p-4">
