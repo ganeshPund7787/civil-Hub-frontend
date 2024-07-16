@@ -52,7 +52,35 @@ const useUpdateUser = () => {
     }
   };
 
-  return { update };
+  const addLanguage = async (formData: CivilUserType) => {
+    try {
+      disptch(fetchStart());
+      const res = await fetch(
+        `${BACKEND_API_URL}/api/user/addLanguage/${CurrentCivilUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await res.json();
+      if (data.success === false) {
+        disptch(updateFail());
+        toast("warning", data.message);
+        console.log("not ok", data);
+        return;
+      }
+      toast("success", "new language add!");
+      console.log("language updated success", data);
+      disptch(updateSuccess(data));
+    } catch (error: any) {
+      disptch(updateFail());
+    }
+  };
+  return { update, addLanguage };
 };
 
 export default useUpdateUser;

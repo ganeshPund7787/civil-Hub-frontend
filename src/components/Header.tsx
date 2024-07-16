@@ -34,7 +34,11 @@ const Header: React.FC = () => {
           </div>
           <Avatar>
             <Link to={"/user-profile"}>
-              <AvatarImage src={CurrentCivilUser.photoUrl} alt="@shadcn" />
+              <AvatarImage
+                src={CurrentCivilUser.photoUrl}
+                className="object-cover"
+                alt="@shadcn"
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Link>
           </Avatar>

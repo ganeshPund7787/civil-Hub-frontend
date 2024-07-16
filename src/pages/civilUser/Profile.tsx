@@ -1,6 +1,6 @@
 import { useAppSelectore } from "@/App/store";
 import { SlLocationPin } from "react-icons/sl";
-import EditLanguage from "@/components/civilUser/EditLanguage";
+import { RiChatDeleteLine } from "react-icons/ri";
 import AddLanguage from "@/components/civilUser/AddLanguage";
 import AddEducation from "@/components/civilUser/AddEducation";
 import AddSkills from "@/components/civilUser/AddSkills";
@@ -45,20 +45,24 @@ const Profile = () => {
       {/* User language, Skill, Work Experiance & Education section */}
       <div className="flex flex-col md:flex-row">
         <div className="w-full mt-5 md:w-[30%]">
-          <div className="flex items-center p-6">
+          <div className="flex flex-col items-center p-6">
             <div className="flex w-full justify-between items-center">
               <h1 className="text-2xl font-semibold tracking-wide">
                 Languages
               </h1>
-              <p className="flex items-center">
+              <div className="flex items-center">
                 <AddLanguage />
-                {/* <EditLanguage /> */}
-              </p>
+              </div>
             </div>
-            {CurrentCivilUser.languages &&
-              CurrentCivilUser?.languages?.map((language: string) => (
-                <span>{language}</span>
-              ))}
+            <div className="flex flex-col w-full gap-4 mt-5">
+              {CurrentCivilUser.languages &&
+                CurrentCivilUser?.languages?.map((language: string) => (
+                  <span className="border flex items-center justify-between hover:bg-slate-800 hover:border-cyan-500 border-slate-600 rounded-full w-full px-8 py-2 ">
+                    {language}
+                    <RiChatDeleteLine className="cursor-pointer" size={20} />
+                  </span>
+                ))}
+            </div>
           </div>
 
           <div className="flex items-center p-6">

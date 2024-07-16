@@ -20,23 +20,26 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
 
 const formSchema = z.object({
-  language: z.string().trim().min(5, "required"),
+  language: z.string().trim().min(2, "required"),
 });
 
 export type UserLanguageFormData = z.infer<typeof formSchema>;
 
 const AddLanguage = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const { addLanguage } = useUpdateUser();
+  const form = useForm<UserLanguageFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       language: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: UserLanguageFormData) => {
     console.log(values);
+    addLanguage(values);
     form.reset();
   };
 
@@ -64,7 +67,7 @@ const AddLanguage = () => {
                     <FormMessage className="text-red-600" />
                     <FormControl>
                       <Input
-                        placeholder="Enter your fullname"
+                        placeholder="Enter the language"
                         className="rounded-[5px]"
                         autoFocus
                         {...field}

@@ -33,7 +33,7 @@ export type CivilUserType = {
   skills?: string[];
   certifications?: string[];
   projects?: ProjectsType[];
-  languages?: string[];
+  language?: string;
 };
 
 export type EducationType = {
