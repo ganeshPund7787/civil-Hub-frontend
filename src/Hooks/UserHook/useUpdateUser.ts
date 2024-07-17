@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import useToast from "../useToast";
 import { CivilUserType, EducationType, workExperienceType } from "@/types";
+import { UserSkillFormData } from "@/components/civilUser/AddSkills";
 
 export type HeadUserType = {
   fullName?: string;
@@ -87,7 +88,7 @@ const useUpdateUser = () => {
   };
 
   const addSkillsAndWork = async (
-    formData: CivilUserType | workExperienceType
+    formData: UserSkillFormData | workExperienceType
   ) => {
     try {
       disptch(fetchStart());
@@ -110,7 +111,7 @@ const useUpdateUser = () => {
         console.log("not ok", data);
         return;
       }
-      toast("success", "new changes success!");
+      toast("success", "new changes added!");
       disptch(updateSuccess(data));
     } catch (error: any) {
       disptch(updateFail());

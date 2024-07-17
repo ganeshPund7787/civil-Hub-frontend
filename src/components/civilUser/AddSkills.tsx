@@ -7,11 +7,40 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { Label } from "@radix-ui/react-label";
 import { IoAdd } from "react-icons/io5";
 import { Input } from "../ui/input";
+import { z } from "zod";
+import { FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+
+const formSchema = z.object({
+  skill: z.string().trim().min(2, "required"),
+});
+
+export type UserSkillFormData = z.infer<typeof formSchema>;
 
 const AddSkills = () => {
+  const { addSkillsAndWork } = useUpdateUser();
+  const formMethods = useForm<UserSkillFormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      skill: "",
+    },
+  });
+
+  const onSubmit = (values: UserSkillFormData) => {
+    addSkillsAndWork(values);
+    formMethods.reset();
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -23,24 +52,51 @@ const AddSkills = () => {
         </Button>
       </DialogTrigger>
 
-      <DialogContent>
+      <DialogContent aria-describedby="dialog-description">
         <DialogTitle>Add Skill</DialogTitle>
+        <p id="dialog-description" className="sr-only">
+          Enter the skill you want to add.
+        </p>
+
         <div className="grid gap-4 py-4">
-          <div className="">
-            <Label htmlFor="name" className="text-right">
-              Write your skill name:
-            </Label>
-            <Input id="name" placeholder="Enter skill name" className="my-4" />
-          </div>
+          <FormProvider {...formMethods}>
+            <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+              <FormField
+                control={formMethods.control}
+                name="skill"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Language</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter the language"
+                        className="rounded-[5px]"
+                        autoFocus
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-600" />
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"
+              >
+                Add
+              </Button>
+            </form>
+          </FormProvider>
         </div>
+
         <DialogFooter>
           <DialogClose>
             <Button
               className="bg-cyan-500 rounded"
-              type="submit"
+              type="button"
               variant="ghost"
             >
-              Add
+              Close
             </Button>
           </DialogClose>
         </DialogFooter>

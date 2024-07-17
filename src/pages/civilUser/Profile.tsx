@@ -84,11 +84,10 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-3 px-10">
-            {" "}
+          <div className="flex flex-col py-3 items-center gap-3 px-10">
             {CurrentCivilUser.education &&
               CurrentCivilUser.education.map((education: EducationType) => (
-                <EducationCard education={education} key={education.id} />
+                <EducationCard key={education.degree} education={education} />
               ))}
           </div>
         </div>
@@ -100,10 +99,15 @@ const Profile = () => {
               <h1 className="font-semibold text-2xl">Skills</h1>
               <AddSkills />
             </div>
-            <div className="">
+            <div className="flex flex-wrap gap-5 py-2 px-6">
               {CurrentCivilUser.skills.length > 0 &&
                 CurrentCivilUser?.skills?.map((skill: string) => (
-                  <div className="">{skill}</div>
+                  <div
+                    key={skill}
+                    className="border hover:bg-slate-800 hover:border-cyan-500 border-slate-600 rounded-[15px] p-2"
+                  >
+                    {skill}
+                  </div>
                 ))}
             </div>
             <hr className="text-slate-600" />
