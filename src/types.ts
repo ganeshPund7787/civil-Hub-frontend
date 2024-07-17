@@ -1,4 +1,5 @@
 export type workExperienceType = {
+  id?: string;
   jobTitle?: string;
   company?: string;
   startDate?: Date;
@@ -7,6 +8,7 @@ export type workExperienceType = {
 };
 
 export type ProjectsType = {
+  id?: string;
   title?: string;
   description?: string;
   startDate?: Date;
@@ -15,6 +17,14 @@ export type ProjectsType = {
   role?: string;
   client?: string;
   teamSize?: number;
+};
+
+export type EducationType = {
+  id?: string;
+  degree?: string;
+  fieldOfStudy?: string;
+  university?: string;
+  collegeName?: string;
 };
 
 export type CivilUserType = {
@@ -34,13 +44,4 @@ export type CivilUserType = {
   certifications?: string[];
   projects?: ProjectsType[];
   language?: string;
-};
-
-export type EducationType = {
-  degree?: string;
-  fieldOfStudy?: string;
-  university?: string;
-  collegeName?: string;
-  duration?: string;
-  location?: string;
 };

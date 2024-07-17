@@ -29,7 +29,7 @@ const formSchema = z.object({
 export type UserLanguageFormData = z.infer<typeof formSchema>;
 
 const AddLanguage = () => {
-  const { addLanguage } = useUpdateUser();
+  const { addLanAndEducation } = useUpdateUser();
   const form = useForm<UserLanguageFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,7 +39,7 @@ const AddLanguage = () => {
 
   const onSubmit = (values: UserLanguageFormData) => {
     console.log(values);
-    addLanguage(values);
+    addLanAndEducation(values);
     form.reset();
   };
 

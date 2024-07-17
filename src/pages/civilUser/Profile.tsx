@@ -10,6 +10,8 @@ import { IoAdd } from "react-icons/io5";
 import SkillsCarousel from "@/components/civilUser/SkillsCarousel";
 import AddProject from "@/components/civilUser/AddProject";
 import UpdateProfileHead from "@/components/civilUser/UpdateProfileHead";
+import { EducationType } from "@/types";
+import EducationCard from "@/components/civilUser/EducationCard";
 
 const Profile = () => {
   const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
@@ -57,23 +59,37 @@ const Profile = () => {
             <div className="flex flex-col w-full gap-4 mt-5">
               {CurrentCivilUser.languages &&
                 CurrentCivilUser?.languages?.map((language: string) => (
-                  <span className="border flex items-center justify-between hover:bg-slate-800 hover:border-cyan-500 border-slate-600 rounded-full w-full px-8 py-2 ">
+                  <span
+                    key={language}
+                    className="border flex items-center justify-between hover:bg-slate-800 hover:border-cyan-500 border-slate-600 rounded-full w-full px-8 py-2 "
+                  >
                     {language}
-                    <RiChatDeleteLine className="cursor-pointer" size={20} />
+                    <RiChatDeleteLine
+                      className="cursor-pointer hover:text-red-500"
+                      size={20}
+                    />
                   </span>
                 ))}
             </div>
           </div>
 
+          {/* Education...  */}
           <div className="flex items-center p-6">
             <div className="flex w-full justify-between items-center">
               <h1 className="text-2xl font-semibold tracking-wide">
                 Education
               </h1>
-              <p className="flex gap-4 items-center">
+              <div className="flex gap-4 items-center">
                 <AddEducation />
-              </p>
+              </div>
             </div>
+          </div>
+          <div className="flex flex-col items-center gap-3 px-10">
+            {" "}
+            {CurrentCivilUser.education &&
+              CurrentCivilUser.education.map((education: EducationType) => (
+                <EducationCard education={education} key={education.id} />
+              ))}
           </div>
         </div>
 

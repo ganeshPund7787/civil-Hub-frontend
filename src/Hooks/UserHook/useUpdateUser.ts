@@ -8,7 +8,7 @@ import {
 } from "../../App/features/civilUser";
 import { useDispatch } from "react-redux";
 import useToast from "../useToast";
-import { CivilUserType } from "@/types";
+import { CivilUserType, EducationType, workExperienceType } from "@/types";
 
 export type HeadUserType = {
   fullName?: string;
@@ -33,6 +33,7 @@ const useUpdateUser = () => {
           headers: {
             "Content-Type": "Application/json",
           },
+          credentials: "include",
           body: JSON.stringify(formData),
         }
       );
@@ -52,16 +53,21 @@ const useUpdateUser = () => {
     }
   };
 
-  const addLanguage = async (formData: CivilUserType) => {
+  const addLanAndEducation = async (
+    formData: CivilUserType | EducationType
+  ) => {
     try {
+      console.log("FormData : --- : --- : ", formData);
+
       disptch(fetchStart());
       const res = await fetch(
-        `${BACKEND_API_URL}/api/user/addLanguage/${CurrentCivilUser._id}`,
+        `${BACKEND_API_URL}/api/user/addLanAndEducation/${CurrentCivilUser._id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "Application/json",
           },
+          credentials: "include",
           body: JSON.stringify(formData),
         }
       );
@@ -73,14 +79,45 @@ const useUpdateUser = () => {
         console.log("not ok", data);
         return;
       }
-      toast("success", "new language add!");
-      console.log("language updated success", data);
+      toast("success", "new changes success!");
       disptch(updateSuccess(data));
     } catch (error: any) {
       disptch(updateFail());
     }
   };
-  return { update, addLanguage };
+
+  const addSkillsAndWork = async (
+    formData: CivilUserType | workExperienceType
+  ) => {
+    try {
+      disptch(fetchStart());
+      const res = await fetch(
+        `${BACKEND_API_URL}/api/user/addSkillsAndWork/${CurrentCivilUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await res.json();
+      if (data.success === false) {
+        disptch(updateFail());
+        toast("warning", data.message);
+        console.log("not ok", data);
+        return;
+      }
+      toast("success", "new changes success!");
+      disptch(updateSuccess(data));
+    } catch (error: any) {
+      disptch(updateFail());
+    }
+  };
+
+  return { update, addLanAndEducation, addSkillsAndWork };
 };
 
 export default useUpdateUser;
