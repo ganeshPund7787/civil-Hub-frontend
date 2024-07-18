@@ -58,8 +58,6 @@ const useUpdateUser = () => {
     formData: CivilUserType | EducationType
   ) => {
     try {
-      console.log("FormData : --- : --- : ", formData);
-
       disptch(fetchStart());
       const res = await fetch(
         `${BACKEND_API_URL}/api/user/addLanAndEducation/${CurrentCivilUser._id}`,
@@ -112,6 +110,7 @@ const useUpdateUser = () => {
         return;
       }
       toast("success", "new changes added!");
+      console.log(data);
       disptch(updateSuccess(data));
     } catch (error: any) {
       disptch(updateFail());

@@ -2,7 +2,7 @@ import { CivilUserType } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface PersonState {
-  CurrentCivilUser: any;
+  CurrentCivilUser: CivilUserType | any;
   loading: boolean;
 }
 

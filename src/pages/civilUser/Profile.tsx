@@ -4,7 +4,9 @@ import { RiChatDeleteLine } from "react-icons/ri";
 import AddLanguage from "@/components/civilUser/AddLanguage";
 import AddEducation from "@/components/civilUser/AddEducation";
 import AddSkills from "@/components/civilUser/AddSkills";
-import AddWorkExperiance from "@/components/civilUser/AddWorkExperiance";
+import AddWorkExperiance, {
+  UserExperianceFormData,
+} from "@/components/civilUser/AddWorkExperiance";
 import { Button } from "@/components/ui/button";
 import { IoAdd } from "react-icons/io5";
 import SkillsCarousel from "@/components/civilUser/SkillsCarousel";
@@ -12,6 +14,7 @@ import AddProject from "@/components/civilUser/AddProject";
 import UpdateProfileHead from "@/components/civilUser/UpdateProfileHead";
 import { EducationType } from "@/types";
 import EducationCard from "@/components/civilUser/EducationCard";
+import ExperianceCard from "@/components/civilUser/ExperianceCard";
 
 const Profile = () => {
   const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
@@ -23,12 +26,12 @@ const Profile = () => {
         <div className="flex flex-col justify-center md:flex-row">
           <div className="avatar">
             {/* online */}
-            <div className="w-24 h-24 rounded-full">
+            <div className="ml-6 md:ml-0 h-24 rounded-full">
               <img src={CurrentCivilUser.photoUrl} className="h-40 w-40" />
             </div>
           </div>
           <div className="p-5">
-            <h1 className="text-2xl font-semibold">
+            <h1 className="md:text-2xl font-semibold">
               {CurrentCivilUser.fullName}
             </h1>
             <p className="mt-2 flex gap-1 items-center text-sm lowercase">
@@ -92,6 +95,7 @@ const Profile = () => {
           </div>
         </div>
 
+        {/* Skill & Work Experiance section */}
         <div className="border-t-2 md:border-l-2 md:border-t-0 border-slate-500 w-full md:w-[70%]">
           {" "}
           <div className="">
@@ -117,9 +121,13 @@ const Profile = () => {
               <h1 className="font-semibold text-2xl">Work experiance</h1>
               <AddWorkExperiance />
             </div>
-            <div className="">
-              {CurrentCivilUser.workExperience &&
-                CurrentCivilUser.workExperience}
+            <div className="flex flex-col gap-4 px-6">
+              {CurrentCivilUser?.workExperience &&
+                CurrentCivilUser?.workExperience.map(
+                  (work: UserExperianceFormData) => (
+                    <ExperianceCard key={work.id} work={work} />
+                  )
+                )}
             </div>
           </div>
         </div>

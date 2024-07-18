@@ -2,8 +2,7 @@ export type workExperienceType = {
   id?: string;
   jobTitle?: string;
   company?: string;
-  startDate?: Date;
-  endDate?: Date;
+  experiance?: string;
   location?: string;
 };
 
