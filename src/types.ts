@@ -40,7 +40,7 @@ export type CivilUserType = {
   workExperience?: workExperienceType[];
   education?: EducationType[];
   skills?: string[];
-  certifications?: string[];
+  certification?: string;
   projects?: ProjectsType[];
   language?: string;
 };

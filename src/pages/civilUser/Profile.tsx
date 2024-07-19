@@ -9,12 +9,12 @@ import AddWorkExperiance, {
 } from "@/components/civilUser/AddWorkExperiance";
 import { Button } from "@/components/ui/button";
 import { IoAdd } from "react-icons/io5";
-import SkillsCarousel from "@/components/civilUser/SkillsCarousel";
-import AddProject from "@/components/civilUser/AddProject";
 import UpdateProfileHead from "@/components/civilUser/UpdateProfileHead";
 import { EducationType } from "@/types";
 import EducationCard from "@/components/civilUser/EducationCard";
 import ExperianceCard from "@/components/civilUser/ExperianceCard";
+import AddCertifications from "@/components/civilUser/AddCertifications";
+import ProjectSection from "@/components/civilUser/ProjectSection";
 
 const Profile = () => {
   const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
@@ -90,7 +90,7 @@ const Profile = () => {
           <div className="flex flex-col py-3 items-center gap-3 px-10">
             {CurrentCivilUser.education &&
               CurrentCivilUser.education.map((education: EducationType) => (
-                <EducationCard key={education.degree} education={education} />
+                <EducationCard key={education.id} education={education} />
               ))}
           </div>
         </div>
@@ -135,62 +135,12 @@ const Profile = () => {
 
       {/* Certifications Section */}
       <div className="flex mt-5 flex-col min-h-full md:p-5">
-        <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
-          <div className="flex items-center justify-between p-5">
-            <h1 className="text-2xl font-semibold">Certifications</h1>
-            <Button>
-              <IoAdd
-                className="border p-1 border-cyan-500 hover:bg-opacity-30 rounded-full"
-                size={40}
-              />
-            </Button>
-          </div>
-          <hr className="text-slate-500" />
-          <div className="flex items-center justify-center">
-            {CurrentCivilUser?.certifications.length > 0 ? (
-              <SkillsCarousel ImgArr={CurrentCivilUser?.certifications || []} />
-            ) : (
-              <div className="flex flex-col py-10 items-center justify-center">
-                <img
-                  src="https://cdn3d.iconscout.com/3d/premium/thumb/trophy-6437812-5307748.png?f=webp"
-                  alt=""
-                  className="h-52 w-52 mt-5"
-                />
-                <p className="text-wrap text-sm px-5 md:p-0">
-                  Listing your certifications can help prove your specific
-                  knowledge or abilities.(+10%) <br /> You can add them manually
-                  or import them from Credly.{" "}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+        <AddCertifications user={CurrentCivilUser} />
       </div>
 
       {/* Project Section */}
       <div className="flex mt-5 flex-col min-h-full md:p-5">
-        <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
-          <div className="flex items-center justify-between p-5">
-            <h1 className="text-2xl font-semibold">My Projects </h1>
-            <Button>
-              <IoAdd
-                className="border p-1 border-cyan-500 hover:bg-opacity-30 rounded-full"
-                size={40}
-              />
-            </Button>
-          </div>
-          <hr className="text-slate-500" />
-          <div className="">
-            <AddProject />
-          </div>
-          <hr className="text-slate-500" />
-          <div className="">
-            {CurrentCivilUser?.projects?.length > 0 &&
-              CurrentCivilUser?.projects?.map((project: any) => (
-                <span>{project}</span>
-              ))}
-          </div>
-        </div>
+        <ProjectSection user={CurrentCivilUser} />
       </div>
 
       {/* User Activity Section like posts */}

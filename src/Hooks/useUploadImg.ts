@@ -11,15 +11,17 @@ const useUploadImg = () => {
   const [imageUploadError, setImageUploadError] = useState<string | boolean>(
     false
   );
+
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
+
+  let promises: Promise<string>[] = [];
 
   const handleImageSubmit = async (files: FileList) => {
     setError(false);
     if (files.length > 0 && files.length <= 6) {
       setUploading(true);
       setImageUploadError(false);
-      const promises: Promise<string>[] = [];
 
       for (let i = 0; i < files.length; i++) {
         promises.push(storeImage(files[i]));
@@ -78,6 +80,7 @@ const useUploadImg = () => {
     imageUploadError,
     uploading,
     error,
+    promises,
   };
 };
 

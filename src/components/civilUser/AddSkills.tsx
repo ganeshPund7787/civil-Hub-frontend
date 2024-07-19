@@ -28,7 +28,7 @@ const formSchema = z.object({
 export type UserSkillFormData = z.infer<typeof formSchema>;
 
 const AddSkills = () => {
-  const { addSkillsAndWork } = useUpdateUser();
+  const { UpdateOther } = useUpdateUser();
   const formMethods = useForm<UserSkillFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,7 +37,7 @@ const AddSkills = () => {
   });
 
   const onSubmit = (values: UserSkillFormData) => {
-    addSkillsAndWork(values);
+    UpdateOther(values, "addSkillsAndWork");
     formMethods.reset();
   };
 

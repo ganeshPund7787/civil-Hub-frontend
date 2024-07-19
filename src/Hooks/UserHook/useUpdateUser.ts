@@ -85,39 +85,40 @@ const useUpdateUser = () => {
     }
   };
 
-  const addSkillsAndWork = async (
-    formData: UserSkillFormData | workExperienceType
+  const UpdateOther = async (
+    formData: CivilUserType | workExperienceType | UserSkillFormData | string,
+    API_ROOT: string
   ) => {
     try {
       disptch(fetchStart());
+
       const res = await fetch(
-        `${BACKEND_API_URL}/api/user/addSkillsAndWork/${CurrentCivilUser._id}`,
+        `${BACKEND_API_URL}/api/user/${API_ROOT}/${CurrentCivilUser._id}`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
           },
           credentials: "include",
           body: JSON.stringify(formData),
         }
       );
-
       const data = await res.json();
       if (data.success === false) {
         disptch(updateFail());
-        toast("warning", data.message);
+        toast("success", data.message);
         console.log("not ok", data);
         return;
       }
-      toast("success", "new changes added!");
-      console.log(data);
+      toast("success", "new changes success!");
       disptch(updateSuccess(data));
-    } catch (error: any) {
+    } catch (error) {
       disptch(updateFail());
+      console.log(`Erorr while Update Other`, error);
     }
   };
 
-  return { update, addLanAndEducation, addSkillsAndWork };
+  return { update, addLanAndEducation, UpdateOther };
 };
 
 export default useUpdateUser;
