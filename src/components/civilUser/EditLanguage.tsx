@@ -14,7 +14,7 @@ import { MdModeEditOutline } from "react-icons/md";
 
 const EditLanguage = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
-  console.log(CurrentCivilUser.languages);
+  
   return (
     <Dialog>
       <DialogTrigger asChild>

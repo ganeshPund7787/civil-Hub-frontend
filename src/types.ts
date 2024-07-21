@@ -12,7 +12,6 @@ export type ProjectsType = {
   description?: string;
   startDate?: Date;
   endDate?: Date;
-  technologies?: string[];
   role?: string;
   client?: string;
   teamSize?: number;

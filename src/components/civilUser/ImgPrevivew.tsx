@@ -35,8 +35,8 @@ const ImageUploadDialog: React.FC = () => {
 
   const UploadAndStore = async () => {
     setIsOpen(false);
-    const certification = await storeImage(file);
-    UpdateOther(certification, "addCertification");
+    // const certification = await storeImage(file);
+    UpdateOther("certification", "addCertification");
   };
 
   return (

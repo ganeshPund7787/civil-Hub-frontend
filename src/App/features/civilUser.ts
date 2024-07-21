@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface PersonState {
   CurrentCivilUser: CivilUserType | any;
   loading: boolean;
+  isAddProject: boolean;
 }
 
 const initialState: PersonState = {
@@ -11,6 +12,7 @@ const initialState: PersonState = {
     ? JSON.parse(localStorage.getItem("CurrentCivilUser") as string)
     : null,
   loading: false,
+  isAddProject: false,
 };
 
 export const civilUserSlice = createSlice({
@@ -36,6 +38,12 @@ export const civilUserSlice = createSlice({
       state.CurrentCivilUser = action.payload;
       localStorage.setItem("CurrentCivilUser", JSON.stringify(action.payload));
     },
+    startAddProject: (state) => {
+      state.isAddProject = true;
+    },
+    successAddProject: (state) => {
+      state.isAddProject = false;
+    },
   },
 });
 
@@ -45,5 +53,7 @@ export const {
   fetchSuccess,
   updateFail,
   updateSuccess,
+  startAddProject,
+  successAddProject,
 } = civilUserSlice.actions;
 export default civilUserSlice.reducer;

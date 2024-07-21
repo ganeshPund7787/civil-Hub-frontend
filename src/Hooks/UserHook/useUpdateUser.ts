@@ -8,7 +8,12 @@ import {
 } from "../../App/features/civilUser";
 import { useDispatch } from "react-redux";
 import useToast from "../useToast";
-import { CivilUserType, EducationType, workExperienceType } from "@/types";
+import {
+  CivilUserType,
+  EducationType,
+  ProjectsType,
+  workExperienceType,
+} from "@/types";
 import { UserSkillFormData } from "@/components/civilUser/AddSkills";
 
 export type HeadUserType = {
@@ -86,7 +91,12 @@ const useUpdateUser = () => {
   };
 
   const UpdateOther = async (
-    formData: CivilUserType | workExperienceType | UserSkillFormData | string,
+    formData:
+      | CivilUserType
+      | ProjectsType
+      | workExperienceType
+      | UserSkillFormData
+      | string,
     API_ROOT: string
   ) => {
     try {
@@ -104,9 +114,10 @@ const useUpdateUser = () => {
         }
       );
       const data = await res.json();
+      console.log(data);
       if (data.success === false) {
         disptch(updateFail());
-        toast("success", data.message);
+        toast("error", data.message);
         console.log("not ok", data);
         return;
       }
