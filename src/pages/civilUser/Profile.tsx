@@ -15,6 +15,7 @@ import EducationCard from "@/components/civilUser/EducationCard";
 import ExperianceCard from "@/components/civilUser/ExperianceCard";
 import AddCertifications from "@/components/civilUser/AddCertifications";
 import ProjectSection from "@/components/civilUser/ProjectSection";
+import LogOut from "@/components/LogOut";
 
 const Profile = () => {
   const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
@@ -157,6 +158,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <LogOut />
     </div>
   );
 };

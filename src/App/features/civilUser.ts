@@ -44,6 +44,10 @@ export const civilUserSlice = createSlice({
     successAddProject: (state) => {
       state.isAddProject = false;
     },
+    logOutuser: (state) => {
+      state.loading = false;
+      localStorage.clear();
+    },
   },
 });
 
@@ -55,5 +59,6 @@ export const {
   updateSuccess,
   startAddProject,
   successAddProject,
+  logOutuser,
 } = civilUserSlice.actions;
 export default civilUserSlice.reducer;
