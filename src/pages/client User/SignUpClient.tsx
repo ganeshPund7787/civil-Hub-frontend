@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useClientApi } from "@/API/useClientApi";
 
-
 const formSchema = z.object({
   fullName: z.string().min(5, "Full name is required"),
   email: z.string().email("Invalid email address"),
@@ -175,6 +174,7 @@ const FormComponent = () => {
 
               <Button
                 type="submit"
+                disabled={isLoading}
                 className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"
               >
                 {isLoading ? (

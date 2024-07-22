@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { civilUserSlice } from "../App/features/civilUser";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { ClientSlice } from "./features/clientSlice";
 
 export const store = configureStore({
   reducer: {
     user: civilUserSlice.reducer,
+    client: ClientSlice.reducer,
   },
 });
 

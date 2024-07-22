@@ -85,7 +85,7 @@ const SignIn = () => {
               {loading ? (
                 <span className="loading text-cyan-600 loading-spinner"></span>
               ) : (
-                "SIGN UP"
+                "SIGN IN"
               )}
             </Button>
           </div>
