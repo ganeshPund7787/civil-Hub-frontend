@@ -4,11 +4,14 @@ import { z } from "zod";
 import FormInput from "../../components/FormInput"; // Assuming FormInput is in the same directory
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   fullName: z.string().min(5, "Full name is required"),
@@ -35,94 +38,143 @@ const FormComponent = () => {
   });
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
-        <div className="md:flex mx-2 md:mx-0 mt-8 flex-none py-5 md:mt-0 items-center justify-center">
-          <div className="space-y-4 md:w-96 border p-5 md:mx-10 rounded bg-slate-800">
-            <h2 className="text-3xl font-semibold text-center text-cyan-400">
-              Sign Up As Client
-            </h2>
-            <FormInput
-              name="fullName"
-              label="Full Name"
-              placeholder="Enter your full name"
-            />
-            <FormInput
-              name="email"
-              label="Email"
-              placeholder="Enter your email"
-            />
-            <FormInput
-              name="password"
-              label="Password"
-              placeholder="Enter your password"
-              type="password"
-            />
-            <FormInput
-              name="phoneNumber"
-              label="Phone Number"
-              placeholder="Enter your phone number"
-            />
-            <FormInput
-              name="company"
-              label="Company Name"
-              placeholder="Enter your company name"
-            />
-            <FormInput
-              name="address.street"
-              label="Street"
-              placeholder="Enter your street"
-            />
-            <FormInput
-              name="address.city"
-              label="City"
-              placeholder="Enter your city"
-            />
-            <FormInput
-              name="address.state"
-              label="State"
-              placeholder="Enter your state"
-            />
-            <FormInput
-              name="address.postalCode"
-              label="Postal Code"
-              placeholder="Enter your postal code"
-            />
-            <FormInput
-              name="address.country"
-              label="Country"
-              placeholder="Enter your country"
-            />
-            <FormInput
-              name="website"
-              label="Website URL"
-              placeholder="Enter your website URL"
-            />
-            <FormField
-              name="bio"
-              render={({ field }) => (
-                <FormItem className="flex flex-col w-full">
-                  <p className="flex gap-2">
-                    <FormLabel>Bio</FormLabel>
-                    <FormMessage className="text-red-600" />
-                  </p>
-                  <FormControl>
-                    <textarea
-                      placeholder="Enter your bio"
-                      className="rounded-[5px] p-1 w-full border border-slate-600 bg-transparent"
-                      {...field}
-                    ></textarea>
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <button type="submit" className="btn-submit">
-              Submit
-            </button>
+    <>
+      <h1 className="text-3xl px-5 tracking-tight text-cyan-400 font-semibold py-2">
+        CivilHub
+      </h1>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
+          <div className="md:flex mx-2 md:mx-0 mt-8 flex-none py-5 md:mt-0 items-center justify-center">
+            <div className="space-y-5 md:px-20 p-5 md:mx-10 rounded bg-slate-800">
+              <h2 className="text-3xl my-10 font-semibold text-center text-cyan-400">
+                Sign Up As Client
+              </h2>
+
+              <div className="flex  md:flex-row flex-col md:gap-5 justify-between">
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="fullName"
+                    label="Full Name"
+                    placeholder="Enter your name"
+                  />
+                </div>
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="email"
+                    label="Email"
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="password"
+                    label="Password"
+                    placeholder="Enter your password"
+                    type="password"
+                  />
+                </div>
+              </div>
+
+              <div className="flex md:flex-row flex-col md:gap-5">
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="phoneNumber"
+                    label="Phone Number (optional)"
+                    placeholder="Enter your phone number"
+                    type="number"
+                  />
+                </div>
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="company"
+                    label="Company Name (optional)"
+                    placeholder="Enter your company name"
+                  />
+                </div>
+              </div>
+
+              <h1>Your Address (optional) </h1>
+              <div className="flex md:flex-row flex-col md:gap-5">
+                <FormInput
+                  name="address.street"
+                  label="Street"
+                  placeholder="Enter your street"
+                />
+                <FormInput
+                  name="address.city"
+                  label="City"
+                  placeholder="Enter your city"
+                />
+                <FormInput
+                  name="address.state"
+                  label="State"
+                  placeholder="Enter your state"
+                />
+              </div>
+
+              <div className="flex md:flex-row flex-col md:gap-5">
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="address.postalCode"
+                    label="Postal Code (optional)"
+                    placeholder="Enter your postal code"
+                  />
+                </div>
+                <div className="flex-1 md:w-1/2">
+                  <FormInput
+                    name="address.country"
+                    label="Country (optional)"
+                    placeholder="Enter your country"
+                  />
+                </div>
+              </div>
+              <FormInput
+                name="website"
+                label="Website URL (optional)"
+                placeholder="Enter your website URL"
+              />
+              <FormField
+                name="bio"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col w-full">
+                    <p className="flex gap-2">
+                      <FormLabel>Bio (optional)</FormLabel>
+                      <FormMessage className="text-red-600" />
+                    </p>
+                    <FormControl>
+                      <textarea
+                        placeholder="Enter your bio"
+                        className="rounded-[5px] p-1 w-full border border-slate-600 bg-transparent"
+                        {...field}
+                      ></textarea>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormDescription className="text-sm">
+                Already a member?{" "}
+                <Link to="/sign-in" className="text-blue-500">
+                  login
+                </Link>
+              </FormDescription>
+              <FormDescription className="text-sm">
+                back to select{" "}
+                <Link to="/select-role" className="text-blue-500">
+                  role
+                </Link>
+              </FormDescription>
+
+              <Button
+                type="submit"
+                className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"
+              >
+                Sign Up
+              </Button>
+            </div>
           </div>
-        </div>
-      </form>
-    </FormProvider>
+        </form>
+      </FormProvider>
+    </>
   );
 };
 

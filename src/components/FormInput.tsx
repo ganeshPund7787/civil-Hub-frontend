@@ -32,7 +32,7 @@ const FormInput: React.FC<FormInputProps> = ({
           <FormControl>
             <Input
               placeholder={placeholder}
-              className="rounded-[5px]"
+              className="rounded-[5px] text-slate-300"
               autoFocus
               type={type}
               {...field}
