@@ -1,6 +1,6 @@
 import { IoIosLogOut } from "react-icons/io";
 import { Button } from "./ui/button";
-import { useAppDispatch } from "@/App/store";
+import { useAppDispatch, useAppSelectore } from "@/App/store";
 import { fetchFail, fetchStart, logOutuser } from "@/App/features/civilUser";
 import { BACKEND_API_URL } from "@/main";
 import useToast from "@/Hooks/useToast";
@@ -8,6 +8,7 @@ import useToast from "@/Hooks/useToast";
 const LogOut = () => {
   const disptch = useAppDispatch();
   const toast = useToast();
+  const { loading } = useAppSelectore((state) => state.user);
   const logOutUser = async () => {
     try {
       disptch(fetchStart());
@@ -26,8 +27,12 @@ const LogOut = () => {
     }
   };
   return (
-    <Button className="flex items-center  text-red-600 ">
-      <IoIosLogOut size={40} title="logout" onClick={logOutUser} />
+    <Button className="flex items-center mt-5 text-red-600 ">
+      {loading ? (
+        <span className="loading text-cyan-600 loading-spinner"></span>
+      ) : (
+        <IoIosLogOut size={40} title="logout" onClick={logOutUser} />
+      )}
     </Button>
   );
 };

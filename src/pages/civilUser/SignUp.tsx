@@ -59,36 +59,42 @@ const SignUp = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
-        <h1 className="text-3xl px-5 tracking-tight text-cyan-400 font-semibold py-2">
+        <h1 className="text-3xl bg-slate-800 px-5 tracking-tight text-cyan-400 font-semibold py-2">
           CivilHub
         </h1>
-        <div className="md:flex mx-2 md:mx-0 mt-8 flex-none py-5 md:mt-0 items-center justify-center">
-          <div className="space-y-4 md:w-96 border p-5 md:mx-10 rounded bg-slate-800">
+        <div className="md:flex bg-slate-800 mx-2 md:mx-0 mt-8 flex-none py-5 md:mt-0 items-center justify-center">
+          <div className="space-y-4 border border-slate-400 p-5 md:mx-10 rounded bg-slate-800">
             <div>
-              <h2 className="text-3xl font-semibold text-center text-cyan-400">
+              <h2 className="text-3xl my-8 font-semibold text-center text-cyan-400">
                 Sign Up
               </h2>
             </div>
 
-            <FormInput
-              name="fullName"
-              label="Full Name"
-              placeholder="Enter your full name"
-            />
-
-            <FormInput
-              name="email"
-              label="Email"
-              placeholder="Enter your email"
-              type="email"
-            />
-
-            <FormInput
-              name="password"
-              label="Password"
-              placeholder="Enter your password"
-              type="password"
-            />
+            <div className="flex md:flex-row flex-col md:gap-5">
+              <div className="flex-1 md:w-1/2">
+                <FormInput
+                  name="fullName"
+                  label="Full Name"
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div className="flex-1 md:w-1/2">
+                <FormInput
+                  name="email"
+                  label="Email"
+                  placeholder="Enter your email"
+                  type="email"
+                />
+              </div>
+              <div className="flex-1 md:w-1/2">
+                <FormInput
+                  name="password"
+                  label="Password"
+                  placeholder="Enter your password"
+                  type="password"
+                />
+              </div>
+            </div>
 
             <FormField
               name="dateOfBirth"
@@ -138,7 +144,11 @@ const SignUp = () => {
               disabled={isLoading}
               className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"
             >
-              {isLoading ? "LOADING...." : "SIGN UP"}
+              {isLoading ? (
+                <span className="loading text-cyan-600 loading-spinner"></span>
+              ) : (
+                "SIGN UP"
+              )}
             </Button>
           </div>
         </div>

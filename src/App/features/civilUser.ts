@@ -46,6 +46,7 @@ export const civilUserSlice = createSlice({
     },
     logOutuser: (state) => {
       state.loading = false;
+      state.CurrentCivilUser = null;
       localStorage.clear();
     },
   },

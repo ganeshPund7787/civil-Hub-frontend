@@ -44,7 +44,7 @@ export type CivilUserType = {
   language?: string;
 };
 
-export interface ClientType {
+export type ClientType = {
   _id?: string;
   role?: string;
   isAdmin?: Boolean;
@@ -54,13 +54,13 @@ export interface ClientType {
   phoneNumber?: string;
   company?: string;
   address?: {
-    street: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    country: string;
+    street?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    country?: string;
   };
   profilePictureUrl?: string;
   website?: string;
   bio?: string;
-}
+};

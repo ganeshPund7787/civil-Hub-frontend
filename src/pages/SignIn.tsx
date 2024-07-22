@@ -82,7 +82,11 @@ const SignIn = () => {
               disabled={loading}
               className="bg-cyan-400 disabled:cursor-not-allowed mt-7 shadow-lg hover:text-white text-black w-full md:w-60 rounded-[1em] border"
             >
-              {loading ? "LOADING..." : "SIGN UP"}
+              {loading ? (
+                <span className="loading text-cyan-600 loading-spinner"></span>
+              ) : (
+                "SIGN UP"
+              )}
             </Button>
           </div>
         </div>

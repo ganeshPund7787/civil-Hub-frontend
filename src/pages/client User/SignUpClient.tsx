@@ -1,7 +1,7 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import FormInput from "../../components/FormInput"; // Assuming FormInput is in the same directory
+import FormInput from "../../components/FormInput";
 import {
   FormControl,
   FormDescription,
@@ -12,40 +12,49 @@ import {
 } from "@/components/ui/form";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useClientApi } from "@/API/useClientApi";
+
 
 const formSchema = z.object({
   fullName: z.string().min(5, "Full name is required"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(3, "Password is required"),
-  phoneNumber: z.string().optional(),
+  phoneNumber: z.string().min(10, "required"),
   company: z.string().optional(),
   address: z
     .object({
-      street: z.string(),
-      city: z.string(),
-      state: z.string(),
-      postalCode: z.string(),
-      country: z.string(),
+      street: z.string().trim(),
+      city: z.string().trim(),
+      state: z.string().trim(),
+      postalCode: z.string().trim(),
+      country: z.string().trim(),
     })
     .optional(),
   website: z.string().optional(),
   bio: z.string().optional(),
 });
 
+export type ClientFormDataSignUp = z.infer<typeof formSchema>;
+
 const FormComponent = () => {
-  const methods = useForm({
+  const { SignUpClient, isLoading } = useClientApi();
+  const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    SignUpClient({ formData: values });
+  };
+
   return (
     <>
-      <h1 className="text-3xl px-5 tracking-tight text-cyan-400 font-semibold py-2">
+      <h1 className="text-3xl bg-slate-800 px-5 tracking-tight text-cyan-400 font-semibold py-2">
         CivilHub
       </h1>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
-          <div className="md:flex mx-2 md:mx-0 mt-8 flex-none py-5 md:mt-0 items-center justify-center">
-            <div className="space-y-5 md:px-20 p-5 md:mx-10 rounded bg-slate-800">
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <div className="md:flex mx-2 bg-slate-800 md:mx-0 mt-8 flex-none py-5 md:mt-0 items-center justify-center">
+            <div className="space-y-5 border md:px-20 p-5 md:mx-10 rounded border-slate-400">
               <h2 className="text-3xl my-10 font-semibold text-center text-cyan-400">
                 Sign Up As Client
               </h2>
@@ -168,7 +177,11 @@ const FormComponent = () => {
                 type="submit"
                 className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"
               >
-                Sign Up
+                {isLoading ? (
+                  <span className="loading text-cyan-600 loading-spinner"></span>
+                ) : (
+                  "Sign Up"
+                )}
               </Button>
             </div>
           </div>
