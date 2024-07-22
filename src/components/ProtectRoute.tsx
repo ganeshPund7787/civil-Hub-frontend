@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const ProtectRoute = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
 
-  return CurrentCivilUser ? <Outlet /> : <Navigate to={"/select-role"} />;
+  return CurrentCivilUser ? <Outlet /> : <Navigate to={"/sign-in"} />;
 };
 
 export default ProtectRoute;

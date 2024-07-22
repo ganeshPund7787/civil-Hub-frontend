@@ -17,6 +17,7 @@ import { useAppDispatch } from "@/App/store";
 import { successAddProject } from "../../App/features/civilUser";
 import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
 import { nanoid } from "@reduxjs/toolkit";
+import FormInput from "../FormInput";
 
 const formSchema = z.object({
   id: z.string(),
@@ -83,23 +84,10 @@ const AddProject = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
         <div className="grid md:grid-cols-3 md:grid-rows-3 items-center gap-5 space-y-3 md:p-5 p-2 md:mx-5 rounded ">
-          <FormField
+          <FormInput
             name="title"
-            render={({ field }) => (
-              <FormItem>
-                <p className="flex gap-2">
-                  <FormLabel>Name of the project </FormLabel>
-                  <FormMessage className="text-red-600" />
-                </p>
-                <FormControl>
-                  <Input
-                    placeholder="Enter project name"
-                    className="rounded-[5px]"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
+            label="Project Name"
+            placeholder="Enter your Project name"
           />
 
           <FormField
@@ -130,61 +118,23 @@ const AddProject = () => {
               </FormItem>
             )}
           />
-          <FormField
+          <FormInput
             name="role"
-            render={({ field }) => (
-              <FormItem>
-                <p className="flex gap-2">
-                  <FormLabel>Your role in project</FormLabel>
-                  <FormMessage className="text-red-600" />
-                </p>
-                <FormControl>
-                  <Input
-                    placeholder="Write your work type"
-                    className="rounded-[5px]"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
+            label="Your role in project"
+            placeholder="Enter your Project role"
           />
-          <FormField
+          <FormInput
             name="client"
-            render={({ field }) => (
-              <FormItem>
-                <p className="flex gap-2">
-                  <FormLabel>Project client name (optional) </FormLabel>
-                  <FormMessage className="text-red-600" />
-                </p>
-                <FormControl>
-                  <Input
-                    placeholder="Write your project client name"
-                    className="rounded-[5px]"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
+            label="Project client name (optional)"
+            placeholder="client name"
           />
-          <FormField
+          <FormInput
             name="teamSize"
-            render={({ field }) => (
-              <FormItem>
-                <p className="flex gap-2">
-                  <FormLabel>How many members in your team?</FormLabel>
-                  <FormMessage className="text-red-600" />
-                </p>
-                <FormControl>
-                  <Input
-                    type="number"
-                    min={1}
-                    className="rounded-[5px]"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
+            label="How many members work in your team?"
+            placeholder="client name"
+            type="number"
           />
+
           <FormField
             name="description"
             render={({ field }) => (
@@ -197,7 +147,7 @@ const AddProject = () => {
                   <textarea
                     minLength={10}
                     maxLength={500}
-                    className="rounded-[5px] p-1 w-full"
+                    className="rounded-[5px] p-1 w-full bg-transparent border border-slate-500"
                     {...field}
                   ></textarea>
                 </FormControl>

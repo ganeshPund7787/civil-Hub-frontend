@@ -2,21 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form, FormDescription } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
 import { useCivilApi } from "@/API/useCivilUserApi";
 import { useAppSelectore } from "@/App/store";
+import FormInput from "@/components/FormInput";
 
 const formSchema = z.object({
   email: z.string().trim().min(5, "required"),
@@ -55,30 +47,18 @@ const SignIn = () => {
                 login in to civilHub{" "}
               </h2>
             </div>
-
-            <FormField
+            <FormInput
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email </FormLabel>
-                  <FormMessage className="text-red-600" />
-                  <FormControl>
-                    <Input className="rounded-[5px]" autoFocus {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
+              label="Email"
+              placeholder="Enter your email"
+              type="email"
             />
-            <FormField
+
+            <FormInput
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password </FormLabel>
-                  <FormMessage className="text-red-600" />
-                  <FormControl>
-                    <Input className="rounded-[5px]" autoFocus {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
+              label="Password"
+              placeholder="Enter your password"
+              type="password"
             />
 
             <div className="">
@@ -91,7 +71,7 @@ const SignIn = () => {
               </FormDescription>
               <FormDescription className="text-sm">
                 Looking to join us? Register now!
-                <Link to={"/sign-up"} className="text-blue-500">
+                <Link to={"/sign-up-client"} className="text-blue-500">
                   {" "}
                   as a client
                 </Link>

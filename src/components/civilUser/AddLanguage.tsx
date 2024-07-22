@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
+import FormInput from "../FormInput";
 
 const formSchema = z.object({
   language: z.string().trim().min(2, "required"),
@@ -59,22 +60,10 @@ const AddLanguage = () => {
         <div className="grid gap-4 py-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="">
-              <FormField
+              <FormInput
                 name="language"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Language</FormLabel>
-                    <FormMessage className="text-red-600" />
-                    <FormControl>
-                      <Input
-                        placeholder="Enter the language"
-                        className="rounded-[5px]"
-                        autoFocus
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
+                label="language"
+                placeholder="language"
               />
               <Button
                 type="submit"

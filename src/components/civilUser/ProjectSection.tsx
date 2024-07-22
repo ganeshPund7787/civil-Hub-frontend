@@ -32,7 +32,9 @@ const ProjectSection = ({ user }: Props) => {
       <div className="">
         {user?.projects?.length > 0 &&
           user?.projects?.map((Project: ProjectsType) => (
-            <ProjectCard Project={Project} />
+            <div className="" key={Project.id}>
+              <ProjectCard Project={Project} />
+            </div>
           ))}
         {user.projects.length === 0 && (
           <center className="md:text-2xl my-20 text-sm text-cyan-500">

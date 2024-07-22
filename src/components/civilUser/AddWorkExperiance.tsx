@@ -8,19 +8,14 @@ import {
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { IoAdd } from "react-icons/io5";
-import { Input } from "../ui/input";
+
 import { z } from "zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { nanoid } from "@reduxjs/toolkit";
 import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+
+import FormInput from "../FormInput";
 
 const formSchema = z.object({
   id: z.string(),
@@ -69,80 +64,28 @@ const AddWorkExperiance = () => {
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-rows-2 md:gap-4 py-3">
               <div className="flex gap-3 md:gap-5 md:h-0 flex-col md:flex-row">
-                <FormField
-                  control={form.control}
+                <FormInput
                   name="jobTitle"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Job Title </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Your post in company"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-red-600" />
-                    </FormItem>
-                  )}
+                  label="Job Title"
+                  placeholder="Enter your job post"
                 />
-
-                <FormField
-                  control={form.control}
+                <FormInput
                   name="company"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Company Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Enter company name:"
-                          className="rounded-[5px]"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-red-600" />
-                    </FormItem>
-                  )}
+                  label="Company Name"
+                  placeholder="Enter company name:"
                 />
               </div>
 
               <div className="flex gap-3 md:gap-5 flex-col md:flex-row">
-                <FormField
-                  control={form.control}
+                <FormInput
                   name="experiance"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>How many Experiance: </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Years of Experiance"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-red-600" />
-                    </FormItem>
-                  )}
+                  label="How many Experiance:"
+                  placeholder="Years of Experiance"
                 />
-                <FormField
-                  control={form.control}
+                <FormInput
                   name="location"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Company location: </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Enter copany location"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-red-600" />
-                    </FormItem>
-                  )}
+                  label="Company location:"
+                  placeholder="Enter copany location"
                 />
               </div>
             </div>

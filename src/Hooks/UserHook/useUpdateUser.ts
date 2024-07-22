@@ -1,4 +1,3 @@
-import { useAppSelectore } from "@/App/store";
 import { BACKEND_API_URL } from "@/main";
 
 import {
@@ -25,24 +24,20 @@ export type HeadUserType = {
 };
 
 const useUpdateUser = () => {
-  const { CurrentCivilUser } = useAppSelectore((state) => state.user);
   const disptch = useDispatch();
   const toast = useToast();
 
   const update = async (formData: CivilUserType) => {
     try {
       disptch(fetchStart());
-      const res = await fetch(
-        `${BACKEND_API_URL}/api/user/update/${CurrentCivilUser._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "Application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`${BACKEND_API_URL}/api/user/update`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      });
 
       const data = await res.json();
       if (data.success === false) {
@@ -65,7 +60,7 @@ const useUpdateUser = () => {
     try {
       disptch(fetchStart());
       const res = await fetch(
-        `${BACKEND_API_URL}/api/user/addLanAndEducation/${CurrentCivilUser._id}`,
+        `${BACKEND_API_URL}/api/user/addLanAndEducation`,
         {
           method: "PUT",
           headers: {
@@ -102,17 +97,14 @@ const useUpdateUser = () => {
     try {
       disptch(fetchStart());
 
-      const res = await fetch(
-        `${BACKEND_API_URL}/api/user/${API_ROOT}/${CurrentCivilUser._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`${BACKEND_API_URL}/api/user/${API_ROOT}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       console.log(data);
       if (data.success === false) {

@@ -8,18 +8,13 @@ import {
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { IoAdd } from "react-icons/io5";
-import { Input } from "../ui/input";
+
 import { z } from "zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+
+import FormInput from "../FormInput";
 
 const formSchema = z.object({
   skill: z.string().trim().min(2, "required"),
@@ -61,24 +56,12 @@ const AddSkills = () => {
         <div className="grid gap-4 py-4">
           <FormProvider {...formMethods}>
             <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-              <FormField
-                control={formMethods.control}
+              <FormInput
                 name="skill"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Language</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter the language"
-                        className="rounded-[5px]"
-                        autoFocus
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-600" />
-                  </FormItem>
-                )}
+                label="Language"
+                placeholder="Enter the language"
               />
+
               <Button
                 type="submit"
                 className="bg-cyan-400 mt-7 disabled:cursor-not-allowed shadow-lg hover:text-white text-black w-full rounded-[1em] border"

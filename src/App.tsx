@@ -16,6 +16,7 @@ import Layout from "./layout/Layout";
 import { useAppSelectore } from "./App/store";
 import ProtectRoute from "./components/ProtectRoute";
 import Profile from "./pages/civilUser/Profile";
+import SignUpClient from "./pages/client User/SignUpClient";
 
 const App: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Route element={CurrentCivilUser ? <Navigate to={"/"} /> : <Outlet />}>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up-user" element={<SignUp />} />
+          <Route path="/sign-up-client" element={<SignUpClient />} />
           <Route path="/select-role" element={<SelectRoleFoeSignUp />} />
         </Route>
         <Route element={<ProtectRoute />}>

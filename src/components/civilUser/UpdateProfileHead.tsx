@@ -9,23 +9,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogClose, DialogDescription } from "@radix-ui/react-dialog";
-import { Input } from "../ui/input";
+
 import { MdModeEditOutline } from "react-icons/md";
 import { ChangeEvent, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { Form, FormDescription } from "../ui/form";
 import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
 import useUploadImg from "@/Hooks/useUploadImg";
+import FormInput from "../FormInput";
 
 type Props = {
   user: any;
@@ -131,22 +124,10 @@ const UpdateProfileHead = ({ user, loading }: Props) => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="flex flex-col gap-2"
               >
-                <FormField
+                <FormInput
                   name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>FullName</FormLabel>
-                      <FormMessage className="text-red-600" />
-                      <FormControl>
-                        <Input
-                          placeholder="Enter your fullname"
-                          className="rounded-[5px] w-full"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
+                  label="FullName"
+                  placeholder="Enter your fullname"
                 />
 
                 <FormDescription className="text-sm font-semibold">
@@ -154,56 +135,12 @@ const UpdateProfileHead = ({ user, loading }: Props) => {
                 </FormDescription>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                  <FormField
-                    name="city"
-                    render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>City</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="city"
-                            className="rounded-[5px]"
-                            autoFocus
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage className="text-red-600" />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    name="state"
-                    render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>State</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="state"
-                            className="rounded-[5px]"
-                            autoFocus
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage className="text-red-600" />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
+                  <FormInput name="city" label="City" placeholder="city" />
+                  <FormInput name="state" label="state" placeholder="state" />
+                  <FormInput
                     name="country"
-                    render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>Country</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="country"
-                            className="rounded-[5px]"
-                            autoFocus
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage className="text-red-600" />
-                      </FormItem>
-                    )}
+                    label="country"
+                    placeholder="country"
                   />
                 </div>
 

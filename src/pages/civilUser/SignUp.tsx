@@ -11,11 +11,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
 import { useCivilApi } from "@/API/useCivilUserApi";
+import FormInput from "@/components/FormInput";
 
 const formSchema = z.object({
   fullName: z.string().trim().min(5, "Full name is required"),
@@ -68,56 +69,25 @@ const SignUp = () => {
                 Sign Up
               </h2>
             </div>
-            <FormField
+
+            <FormInput
               name="fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>FullName</FormLabel>
-                  <FormMessage className="text-red-600" />
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your fullname"
-                      className="rounded-[5px]"
-                      autoFocus
-                      {...field}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
+              label="Full Name"
+              placeholder="Enter your full name"
             />
-            <FormField
+
+            <FormInput
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormMessage className="text-red-600" />
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your email"
-                      className="rounded-[5px]"
-                      autoFocus
-                      {...field}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
+              label="Email"
+              placeholder="Enter your email"
+              type="email"
             />
-            <FormField
+
+            <FormInput
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormMessage className="text-red-600" />
-                  <FormControl>
-                    <Input
-                      placeholder="Enter Your Password"
-                      className="rounded-[5px]"
-                      autoFocus
-                      {...field}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
+              label="Password"
+              placeholder="Enter your password"
+              type="password"
             />
 
             <FormField
@@ -144,57 +114,11 @@ const SignUp = () => {
               Address
             </FormDescription>
             <div className="flex flex-col md:flex-row gap-4">
-              <FormField
-                name="city"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>City</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="city"
-                        className="rounded-[5px]"
-                        autoFocus
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-600" />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="state"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>State</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="state"
-                        className="rounded-[5px]"
-                        autoFocus
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-600" />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="country"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Country</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="country"
-                        className="rounded-[5px]"
-                        autoFocus
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-600" />
-                  </FormItem>
-                )}
-              />
+              <FormInput name="city" label="City" placeholder="city" />
+
+              <FormInput name="state" label="State" placeholder="state" />
+
+              <FormInput name="country" label="Country" placeholder="country" />
             </div>
             <FormDescription className="text-sm">
               Already a member?{" "}
@@ -203,9 +127,9 @@ const SignUp = () => {
               </Link>
             </FormDescription>
             <FormDescription className="text-sm">
-              back to select  { " " }
+              back to select{" "}
               <Link to="/select-role" className="text-blue-500">
-                 role
+                role
               </Link>
             </FormDescription>
 

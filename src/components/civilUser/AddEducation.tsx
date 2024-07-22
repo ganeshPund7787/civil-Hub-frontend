@@ -9,21 +9,15 @@ import {
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { IoAdd } from "react-icons/io5";
-import { Input } from "../ui/input";
+
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { Form } from "../ui/form";
 import { nanoid } from "@reduxjs/toolkit";
 import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
+import FormInput from "../FormInput";
 
 const formSchema = z.object({
   id: z.string(),
@@ -72,78 +66,28 @@ const AddEducation = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <div className="grid grid-rows-2 md:gap-4 py-3">
               <div className="flex gap-1 md:gap-5 md:h-0 flex-col md:flex-row">
-                <FormField
+                <FormInput
                   name="degree"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Degree Name: </FormLabel>
-                      <FormMessage className="text-red-600" />
-                      <FormControl>
-                        <Input
-                          placeholder="Enter a degree name"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
+                  label="Degree"
+                  placeholder="Enter your degree"
                 />
-
-                <FormField
+                <FormInput
                   name="fieldOfStudy"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>fieldOfStudy</FormLabel>
-                      <FormMessage className="text-red-600" />
-                      <FormControl>
-                        <Input
-                          placeholder="Enter type of field your study"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
+                  label="Field Of Study"
+                  placeholder="Enter your field"
                 />
               </div>
 
               <div className="flex gap-1 md:gap-5 flex-col md:flex-row">
-                <FormField
+                <FormInput
                   name="university"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>university</FormLabel>
-                      <FormMessage className="text-red-600" />
-                      <FormControl>
-                        <Input
-                          placeholder="Enter name of the univercity"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
+                  label="university"
+                  placeholder="Enter your university"
                 />
-
-                <FormField
+                <FormInput
                   name="collegeName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>School or College Name</FormLabel>
-                      <FormMessage className="text-red-600" />
-                      <FormControl>
-                        <Input
-                          placeholder="Enter school or college name"
-                          className="rounded-[5px]"
-                          autoFocus
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
+                  label="College Name"
+                  placeholder="Enter your collegeName"
                 />
               </div>
             </div>
