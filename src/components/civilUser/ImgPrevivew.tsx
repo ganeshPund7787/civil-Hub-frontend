@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { IoAdd } from "react-icons/io5";
 import { Button } from "../ui/button";
-import useUploadImg from "@/Hooks/useUploadImg";
-import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
 import { useDispatch } from "react-redux";
 import {
   fetchStart,
@@ -33,13 +31,12 @@ export type UserProjectFormData = z.infer<typeof formSchema>;
 const ImageUploadDialog: React.FC = () => {
   const disptch = useDispatch();
   const toast = useToast();
-  const { storeImage } = useUploadImg();
-  const { UpdateOther } = useUpdateUser();
+
   const fileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(file);
   const formMethods = useForm<UserProjectFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
