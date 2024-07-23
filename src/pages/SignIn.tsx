@@ -18,7 +18,7 @@ const formSchema = z.object({
 export type UserFormData = z.infer<typeof formSchema>;
 
 const SignIn = () => {
-  const { SignInCivilUser } = useCivilApi();
+  const { SignInUser } = useCivilApi();
 
   const { loading } = useAppSelectore((state) => state.user);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -30,7 +30,7 @@ const SignIn = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    SignInCivilUser(values);
+    SignInUser(values);
   };
 
   return (

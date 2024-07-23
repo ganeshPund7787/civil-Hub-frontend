@@ -9,6 +9,7 @@ import MobileNav from "./MobNav";
 
 const Header: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
+  const { Client } = useAppSelectore((state) => state.client);
 
   return (
     <>
@@ -32,16 +33,29 @@ const Header: React.FC = () => {
             />
             <FaSearch className="text-white font-normal" />
           </div>
-          <Avatar>
-            <Link to={"/user-profile"}>
-              <AvatarImage
-                src={CurrentCivilUser.photoUrl}
-                className="object-cover"
-                alt="@shadcn"
-              />
-              <AvatarFallback>CN</AvatarFallback>
-            </Link>
-          </Avatar>
+          {CurrentCivilUser ? (
+            <Avatar>
+              <Link to={"/user-profile"}>
+                <AvatarImage
+                  src={CurrentCivilUser.photoUrl}
+                  className="object-cover"
+                  alt="@shadcn"
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Link>
+            </Avatar>
+          ) : (
+            <Avatar>
+              <Link to={"/client-profile"}>
+                <AvatarImage
+                  src={Client.profilePictureUrl}
+                  className="object-cover"
+                  alt="@shadcn"
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Link>
+            </Avatar>
+          )}
         </div>
         <div className="md:hidden block">
           <MobileNav />

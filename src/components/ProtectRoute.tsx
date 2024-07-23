@@ -3,8 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectRoute = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
+  const { Client } = useAppSelectore((state) => state.client);
 
-  return CurrentCivilUser ? <Outlet /> : <Navigate to={"/sign-in"} />;
+  return CurrentCivilUser || Client ? <Outlet /> : <Navigate to={"/sign-in"} />;
 };
 
 export default ProtectRoute;

@@ -1,4 +1,9 @@
 import { fetchFail, fetchStart, fetchSuccess } from "@/App/features/civilUser";
+import {
+  fetchFailClient,
+  fetchStartClient,
+  fetchSuccessClient,
+} from "@/App/features/clientSlice";
 import { useAppDispatch } from "@/App/store";
 import useToast from "@/Hooks/useToast";
 import { BACKEND_API_URL } from "@/main";
@@ -13,6 +18,7 @@ export const useCivilApi = () => {
 
   const [isLoading, setisLoading] = useState(false);
   const notify = useToast();
+
   const SignUpCivilUser = async (formData: UserFormDataSignUp) => {
     setisLoading(true);
     const res = await fetch(`${BACKEND_API_URL}/api/auth/register`, {
@@ -35,8 +41,9 @@ export const useCivilApi = () => {
     return data;
   };
 
-  const SignInCivilUser = async (formData: UserFormData) => {
+  const SignInUser = async (formData: UserFormData) => {
     dispatch(fetchStart());
+    dispatch(fetchStartClient());
     const res = await fetch(`${BACKEND_API_URL}/api/auth/login`, {
       method: "POST",
       headers: {
@@ -47,17 +54,27 @@ export const useCivilApi = () => {
     });
 
     const data = await res.json();
+    console.log(data.success);
 
-    if (!data.success) {
+    if (data.success === false) {
+      console.log(`Data success false`);
       dispatch(fetchFail());
+      dispatch(fetchFailClient());
       notify("error", data.message);
       return;
     }
-    notify("success", data.message);
-    dispatch(fetchSuccess(data?.user || null));
+
+    notify("success", "User login successfully");
+    console.log(`Notify`);
+    if (data?.role === "engineer") {
+      dispatch(fetchSuccess(data || null));
+      navigate("/");
+      return;
+    }
+    dispatch(fetchSuccessClient(data || null));
     navigate("/");
     return data;
   };
 
-  return { SignUpCivilUser, SignInCivilUser, isLoading };
+  return { SignUpCivilUser, SignInUser, isLoading };
 };

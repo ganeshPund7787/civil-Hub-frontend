@@ -27,7 +27,7 @@ export const useClientApi = () => {
       });
 
       const data = await res.json();
-      console.log(data);
+      
       setisLoading(false);
       if (!data.success) {
         notify("error", data.message);
