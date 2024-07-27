@@ -14,6 +14,7 @@ interface FormInputProps {
   label: string;
   placeholder: string;
   type?: string;
+  defaultValue?: any;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -21,6 +22,7 @@ const FormInput: React.FC<FormInputProps> = ({
   label,
   placeholder,
   type = "text",
+  defaultValue = "",
 }) => {
   return (
     <FormField
@@ -32,8 +34,9 @@ const FormInput: React.FC<FormInputProps> = ({
           <FormControl>
             <Input
               placeholder={placeholder}
-              className="rounded-[5px] text-slate-300"
+              className="rounded-[5px] focus:outline-cyan-600 text-slate-300"
               autoFocus
+              defaultValue={defaultValue}
               type={type}
               {...field}
             />

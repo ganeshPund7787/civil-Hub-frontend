@@ -48,6 +48,7 @@ const UpdateProfileHead = ({ user, loading }: Props) => {
     });
 
   type UserUpdateFormData = z.infer<typeof formSchema>;
+
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files[0]) {
@@ -149,12 +150,12 @@ const UpdateProfileHead = ({ user, loading }: Props) => {
                     <DialogFooter className="">
                       <DialogClose asChild>
                         <Button
-                          disabled={loading}
+                          disabled={loading || uploading}
                           className="bg-green-500 disabled:cursor-not-allowed rounded"
                           type="button"
                         >
                           {loading ? (
-                            <span className="loading text-cyan-600 loading-spinner"></span>
+                            <span className="loading disabled:bg-slate-700 text-cyan-600 loading-spinner"></span>
                           ) : (
                             "Close"
                           )}

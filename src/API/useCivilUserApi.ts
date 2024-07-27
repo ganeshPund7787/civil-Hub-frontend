@@ -54,7 +54,6 @@ export const useCivilApi = () => {
     });
 
     const data = await res.json();
-    console.log(data.success);
 
     if (data.success === false) {
       console.log(`Data success false`);

@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useClientApi } from "@/API/useClientApi";
 
-const formSchema = z.object({
+export const formSchemaClient = z.object({
   fullName: z.string().min(5, "Full name is required"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(3, "Password is required"),
@@ -33,15 +33,15 @@ const formSchema = z.object({
   bio: z.string().optional(),
 });
 
-export type ClientFormDataSignUp = z.infer<typeof formSchema>;
+export type ClientFormDataSignUp = z.infer<typeof formSchemaClient>;
 
 const FormComponent = () => {
   const { SignUpClient, isLoading } = useClientApi();
-  const methods = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const methods = useForm<z.infer<typeof formSchemaClient>>({
+    resolver: zodResolver(formSchemaClient),
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof formSchemaClient>) => {
     SignUpClient({ formData: values });
   };
 

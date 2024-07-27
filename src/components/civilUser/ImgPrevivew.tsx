@@ -21,6 +21,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
+import useUploadImg from "@/Hooks/useUploadImg";
 
 const formSchema = z.object({
   project: z.string().trim().min(2, "required"),
@@ -31,18 +32,19 @@ export type UserProjectFormData = z.infer<typeof formSchema>;
 const ImageUploadDialog: React.FC = () => {
   const disptch = useDispatch();
   const toast = useToast();
-
+  const { storeImage } = useUploadImg();
   const fileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(file);
+
   const formMethods = useForm<UserProjectFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       project: "",
     },
   });
+
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     setFile(file ? file : null);
@@ -58,22 +60,18 @@ const ImageUploadDialog: React.FC = () => {
 
   const UploadAndStore = async () => {
     setIsOpen(false);
-    // const certification = await storeImage(file);
-    const certification = "Ganu Don";
+    const certification = await storeImage(file);
+
     try {
       disptch(fetchStart());
-
-      const res = await fetch(
-        `${BACKEND_API_URL}/api/user/AddUserCertificate`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(certification),
-        }
-      );
+      const res = await fetch(`${BACKEND_API_URL}/api/user/UserAchivements`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(certification),
+      });
       const data = await res.json();
       console.log(data);
       if (data.success === false) {

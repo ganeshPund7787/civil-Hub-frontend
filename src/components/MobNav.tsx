@@ -10,13 +10,15 @@ import {
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoMdOptions } from "react-icons/io";
+import { useAppSelectore } from "@/App/store";
 
 const MobileNav = () => {
+  const { CurrentCivilUser } = useAppSelectore((s) => s.user);
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost">
-          <IoMdOptions size={20}/>
+          <IoMdOptions size={20} />
         </Button>
       </SheetTrigger>
       <SheetContent>
@@ -29,7 +31,10 @@ const MobileNav = () => {
           </SheetTitle>
         </SheetHeader>
         <div className="flex flex-col gap-5 mt-10">
-          <Link className="py-1" to={"/user-profile"}>
+          <Link
+            className="py-1"
+            to={`${CurrentCivilUser ? "/user-profile" : "/client-profile"}`}
+          >
             <SheetClose>My Profile</SheetClose>
           </Link>
           <Link className="py-" to={"/"}>
