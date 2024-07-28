@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type workExperienceType = {
   id?: string;
   jobTitle?: string;
@@ -70,7 +72,7 @@ export type PostType = {
   _id?: any;
   image?: string;
   userId?: any;
-  description?: string;
+  description?: string | ReactNode;
   likes?: string[];
   comments?: {
     userId: string;

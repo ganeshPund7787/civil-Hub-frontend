@@ -3,16 +3,17 @@ import { Button } from "./ui/button";
 import { useAppDispatch } from "@/App/store";
 import { fetchFail, fetchStart, logOutuser } from "@/App/features/civilUser";
 import { BACKEND_API_URL } from "@/main";
-import useToast from "@/Hooks/useToast";
+
 import {
   fetchFailClient,
   fetchStartClient,
   logOutClient,
 } from "@/App/features/clientSlice";
+import { toast } from "react-toastify";
 
-const LogOut = () => {
+const LogOut = () => {  
   const disptch = useAppDispatch();
-  const toast = useToast();
+
   const logOutUser = async () => {
     try {
       disptch(fetchStart());
@@ -23,13 +24,14 @@ const LogOut = () => {
       if (data.success === false) {
         disptch(fetchFail());
         disptch(fetchFailClient());
-        toast("warning", data.message);
+        toast.warning(data.message);
         return;
       }
-      toast("success", data.message);
+      toast.success(data.message);
       disptch(logOutuser());
       disptch(logOutClient());
     } catch (error: any) {
+      toast.error(error.message);
       disptch(fetchFail());
     }
   };

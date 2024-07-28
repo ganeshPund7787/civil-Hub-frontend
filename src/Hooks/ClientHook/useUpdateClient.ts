@@ -6,7 +6,7 @@ import {
 import { useAppDispatch } from "@/App/store";
 import { BACKEND_API_URL } from "@/main";
 import { ClientType } from "@/types";
-import useToast from "../useToast";
+import { toast } from "react-toastify";
 
 type Props = {
   formData: ClientType;
@@ -14,7 +14,7 @@ type Props = {
 
 const useUpdateClient = () => {
   const dispatch = useAppDispatch();
-  const notify = useToast();
+
   const updateClient = async ({ formData }: Props) => {
     try {
       dispatch(fetchStartClient());
@@ -29,12 +29,13 @@ const useUpdateClient = () => {
       const data = await res.json();
       if (data.success === false) {
         dispatch(fetchFailClient());
-        notify("error", data.message);
+        toast.error(data.message);
         return;
       }
       dispatch(updateSuccessClient(data));
-      notify("success", "Client update success");
-    } catch (error) {
+      toast.success("Client update success");
+    } catch (error: any) {
+      toast.error(error.message);
       console.log(`Error while Update client : `, error);
     }
   };

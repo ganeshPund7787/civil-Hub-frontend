@@ -56,7 +56,6 @@ const CreatePost = () => {
     if (files && files[0]) {
       setImageFile(files[0]);
       setImageFileUrl(URL.createObjectURL(files[0]));
-      console.log(URL.createObjectURL(files[0]));
     }
   };
 
@@ -145,16 +144,19 @@ const CreatePost = () => {
               </Button>
               {!isComplite ? (
                 <Button
-                  className="bg-cyan-500 rounded"
+                  disabled={loading || Clientloading}
+                  className={`disabled:cursor-pointer bg-cyan-500 rounded`}
                   type="submit"
                   variant="ghost"
                 >
-                  {loading || Clientloading ? "Loading.." : " Post"}
+                  Post
                 </Button>
               ) : (
                 <DialogFooter>
                   <DialogClose>
-                    <Button className="bg-red-600">Close</Button>
+                    <Button type="button" className="bg-red-600">
+                      Close
+                    </Button>
                   </DialogClose>
                 </DialogFooter>
               )}

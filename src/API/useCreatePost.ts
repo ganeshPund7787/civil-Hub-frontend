@@ -1,13 +1,12 @@
-import useToast from "@/Hooks/useToast";
 import { BACKEND_API_URL } from "@/main";
 import { PostType } from "@/types";
+import { toast } from "react-toastify";
 
 type Props = {
   formData: PostType;
 };
 
 const useCreatePost = () => {
-  const notify = useToast();
   const createPost = async (formData: Props) => {
     try {
       const res = await fetch(`${BACKEND_API_URL}/api/post/create`, {
@@ -19,9 +18,14 @@ const useCreatePost = () => {
         body: JSON.stringify(formData.formData),
       });
       const data = await res.json();
-      console.log(data);
+
+      if (data.success) {
+        toast.error("Error while Post Create");
+        return;
+      }
+      toast.success("Post created success");
     } catch (error: any) {
-      notify("error", error?.message);
+      toast.error("No Internet");
       console.log(`Error while post frontend : `, error);
     }
   };

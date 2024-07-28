@@ -6,7 +6,7 @@ import {
   updateSuccess,
 } from "../../App/features/civilUser";
 import { useDispatch } from "react-redux";
-import useToast from "../useToast";
+
 import {
   CivilUserType,
   EducationType,
@@ -14,6 +14,7 @@ import {
   workExperienceType,
 } from "@/types";
 import { UserSkillFormData } from "@/components/civilUser/AddSkills";
+import { toast } from "react-toastify";
 
 export type HeadUserType = {
   fullName?: string;
@@ -25,7 +26,6 @@ export type HeadUserType = {
 
 const useUpdateUser = () => {
   const disptch = useDispatch();
-  const toast = useToast();
 
   const update = async (formData: CivilUserType) => {
     try {
@@ -42,14 +42,14 @@ const useUpdateUser = () => {
       const data = await res.json();
       if (data.success === false) {
         disptch(updateFail());
-        toast("error", data.message);
-        console.log("not ok", data);
+        toast.error(data.message);
         return;
       }
-      toast("info", "Profle Updated!");
-      console.log("User updated success", data);
+      toast.success("Profle Updated!");
+
       disptch(updateSuccess(data));
     } catch (error: any) {
+      toast.error(error.message);
       disptch(updateFail());
     }
   };
@@ -74,13 +74,14 @@ const useUpdateUser = () => {
       const data = await res.json();
       if (data.success === false) {
         disptch(updateFail());
-        toast("warning", data.message);
+        toast.error(data.message);
         console.log("not ok", data);
         return;
       }
-      toast("success", "new changes success!");
+      toast.success("new changes success!");
       disptch(updateSuccess(data));
     } catch (error: any) {
+      toast.error(error.message);
       disptch(updateFail());
     }
   };
@@ -106,17 +107,17 @@ const useUpdateUser = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
+
       if (data.success === false) {
         disptch(updateFail());
-        toast("error", data.message);
-        console.log("not ok", data);
+        toast.error(data.message);
         return;
       }
-      toast("success", "new changes success!");
+      toast.success("new changes success!");
       disptch(updateSuccess(data));
-    } catch (error) {
+    } catch (error: any) {
       disptch(updateFail());
+      toast.error(error.message);
       console.log(`Erorr while Update Other`, error);
     }
   };

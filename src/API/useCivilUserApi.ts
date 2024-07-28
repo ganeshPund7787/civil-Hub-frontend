@@ -5,19 +5,18 @@ import {
   fetchSuccessClient,
 } from "@/App/features/clientSlice";
 import { useAppDispatch } from "@/App/store";
-import useToast from "@/Hooks/useToast";
 import { BACKEND_API_URL } from "@/main";
 import { UserFormDataSignUp } from "@/pages/civilUser/SignUp";
 import { UserFormData } from "@/pages/SignIn";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const useCivilApi = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [isLoading, setisLoading] = useState(false);
-  const notify = useToast();
 
   const SignUpCivilUser = async (formData: UserFormDataSignUp) => {
     setisLoading(true);
@@ -33,10 +32,10 @@ export const useCivilApi = () => {
     const data = await res.json();
     setisLoading(false);
     if (!data.success) {
-      notify("error", data.message);
+      toast.error(data.message);
       return;
     }
-    notify("success", data.message);
+    toast.success(data.message);
     navigate("/sign-in");
     return data;
   };
@@ -59,12 +58,12 @@ export const useCivilApi = () => {
       console.log(`Data success false`);
       dispatch(fetchFail());
       dispatch(fetchFailClient());
-      notify("error", data.message);
+      toast.error(data.message);
       return;
     }
 
-    notify("success", "User login successfully");
-    console.log(`Notify`);
+    toast.success("User login successfully");
+
     if (data?.role === "engineer") {
       dispatch(fetchSuccess(data || null));
       navigate("/");

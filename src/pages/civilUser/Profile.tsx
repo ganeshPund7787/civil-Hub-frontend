@@ -8,16 +8,33 @@ import AddWorkExperiance, {
   UserExperianceFormData,
 } from "@/components/civilUser/AddWorkExperiance";
 import UpdateProfileHead from "@/components/civilUser/UpdateProfileHead";
-import { EducationType } from "@/types";
+import { EducationType, PostType } from "@/types";
 import EducationCard from "@/components/civilUser/EducationCard";
 import ExperianceCard from "@/components/civilUser/ExperianceCard";
 import AddCertifications from "@/components/civilUser/AddCertifications";
 import ProjectSection from "@/components/civilUser/ProjectSection";
 import LogOut from "@/components/LogOut";
 import CreatePost from "@/components/CreatePost";
+import { useEffect, useState } from "react";
+import useGetPost from "@/Hooks/useGetPost";
+import PostCard from "@/components/PostCard";
 
 const Profile = () => {
   const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
+  const { GetAllPost } = useGetPost();
+  const [posts, setPosts] = useState<PostType | []>([]);
+  const normalizedPosts = Array.isArray(posts) ? posts : [posts];
+
+  const GetPost = async () => {
+    if (CurrentCivilUser) {
+      const res = await GetAllPost();
+      setPosts(res);
+    }
+  };
+
+  useEffect(() => {
+    GetPost();
+  }, [loading, posts]);
 
   return (
     <>
@@ -172,6 +189,16 @@ const Profile = () => {
                       Activity / Posts{" "}
                     </h1>
                     <CreatePost />
+                  </div>
+                  <div className="flex flex-col gap-5 md:p-5 p-1">
+                    {posts &&
+                      normalizedPosts?.map((post: PostType) => (
+                        <PostCard
+                          key={post._id}
+                          post={post}
+                          user={CurrentCivilUser}
+                        />
+                      ))}
                   </div>
                 </div>
               </div>

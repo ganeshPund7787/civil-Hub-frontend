@@ -16,12 +16,13 @@ import {
   updateSuccess,
 } from "@/App/features/civilUser";
 import { BACKEND_API_URL } from "@/main";
-import useToast from "@/Hooks/useToast";
+
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
 import useUploadImg from "@/Hooks/useUploadImg";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   project: z.string().trim().min(2, "required"),
@@ -31,7 +32,7 @@ export type UserProjectFormData = z.infer<typeof formSchema>;
 
 const ImageUploadDialog: React.FC = () => {
   const disptch = useDispatch();
-  const toast = useToast();
+
   const { storeImage } = useUploadImg();
   const fileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -76,11 +77,11 @@ const ImageUploadDialog: React.FC = () => {
       console.log(data);
       if (data.success === false) {
         disptch(updateFail());
-        toast("error", data.message);
+        toast.error(data.message);
         console.log("not ok", data);
         return;
       }
-      toast("success", "new changes success!");
+      toast.success("new changes success!");
       disptch(updateSuccess(data));
     } catch (error) {
       disptch(updateFail());
