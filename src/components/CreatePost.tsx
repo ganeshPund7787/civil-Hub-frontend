@@ -23,6 +23,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaImage } from "react-icons/fa";
+import useCreatePost from "@/API/useCreatePost";
 
 const formSchema = z.object({
   image: z.string().trim().optional(),
@@ -32,18 +33,20 @@ const formSchema = z.object({
 export type PostFormData = z.infer<typeof formSchema>;
 
 const CreatePost = () => {
-  const { CurrentCivilUser } = useAppSelectore((state) => state.user);
-  const { Client } = useAppSelectore((state) => state.client);
+  const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
+  const { Client, Clientloading } = useAppSelectore((state) => state.client);
 
   const { storeImage } = useUploadImg();
   const fileRef = useRef<HTMLInputElement>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageFileUrl, setImageFileUrl] = useState<string | null>(null);
+  const [isComplite, setComplite] = useState(false);
+  const { createPost } = useCreatePost();
 
   const form = useForm<PostFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      image: CurrentCivilUser?.photoUrl || Client?.profilePictureUrl,
+      image: "",
       description: "",
     },
   });
@@ -60,9 +63,12 @@ const CreatePost = () => {
   const onSubmit = async (values: PostType) => {
     if (imageFile) {
       const photoUrl = await storeImage(imageFile);
-      console.log(photoUrl);
+      values.image = photoUrl;
     }
     console.log(values);
+    createPost({ formData: values });
+    setComplite(true);
+    form.reset();
   };
 
   return (
@@ -117,7 +123,7 @@ const CreatePost = () => {
                   <img
                     src={imageFileUrl}
                     alt=""
-                    className=" w-full object-center object-cover cursor-pointer"
+                    className="w-full h-80 object-center object-cover cursor-pointer"
                   />
                 )}
               </div>
@@ -137,17 +143,21 @@ const CreatePost = () => {
               >
                 <FaImage size={25} />
               </Button>
-              <DialogFooter>
-                <DialogClose>
-                  <Button
-                    className="bg-cyan-500 rounded"
-                    type="submit"
-                    variant="ghost"
-                  >
-                    Add
-                  </Button>
-                </DialogClose>
-              </DialogFooter>
+              {!isComplite ? (
+                <Button
+                  className="bg-cyan-500 rounded"
+                  type="submit"
+                  variant="ghost"
+                >
+                  {loading || Clientloading ? "Loading.." : " Post"}
+                </Button>
+              ) : (
+                <DialogFooter>
+                  <DialogClose>
+                    <Button className="bg-red-600">Close</Button>
+                  </DialogClose>
+                </DialogFooter>
+              )}
             </div>
           </form>
         </Form>
