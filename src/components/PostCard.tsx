@@ -1,8 +1,8 @@
-import { SlOptions } from "react-icons/sl";
 import { BiLike } from "react-icons/bi";
 import { CivilUserType, ClientType, PostType } from "@/types";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import PostOptions from "./PostOptions";
 type Props = {
   post: PostType;
   user: ClientType | CivilUserType;
@@ -29,15 +29,13 @@ const PostCard = ({ post, user }: Props) => {
             <img
               src={imageUrl}
               alt="User Picture"
-              className="h-10 w-10 rounded-full"
+              className="h-10 w-10 object-cover rounded-full"
             />
           )}
           <h1>{user.fullName}</h1>
         </div>
         <div className="flex mr-5 items-center">
-          <Button type="button" className="hover:cursor-pointer">
-            <SlOptions size={25} />
-          </Button>
+          <PostOptions />
         </div>
       </div>
 
