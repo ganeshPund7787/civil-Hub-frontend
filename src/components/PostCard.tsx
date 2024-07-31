@@ -2,7 +2,8 @@ import { BiLike } from "react-icons/bi";
 import { CivilUserType, ClientType, PostType } from "@/types";
 import { Button } from "./ui/button";
 import { useState } from "react";
-import PostOptions from "./PostOptions";
+import EditPost from "./EditPost";
+
 type Props = {
   post: PostType;
   user: ClientType | CivilUserType;
@@ -35,7 +36,7 @@ const PostCard = ({ post, user }: Props) => {
           <h1>{user.fullName}</h1>
         </div>
         <div className="flex mr-5 items-center">
-          <PostOptions />
+          <EditPost post={post} />
         </div>
       </div>
 

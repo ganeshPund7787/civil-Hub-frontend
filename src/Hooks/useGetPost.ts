@@ -1,6 +1,10 @@
 import { BACKEND_API_URL } from "@/main";
 import { toast } from "react-toastify";
 
+type PostFormData = {
+  description: string;
+  image?: string | undefined;
+};
 const useGetPost = () => {
   const GetAllPost = async () => {
     try {
@@ -18,7 +22,35 @@ const useGetPost = () => {
       console.log(`Error while getApp Post frontend: `, error);
     }
   };
-  return { GetAllPost };
+
+  const updatePost = async (postId: string, values: PostFormData) => {
+    try {
+      const res = await fetch(`${BACKEND_API_URL}/api/post/update/${postId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          description: values.description,
+          image: values.image,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.success === false || !res.ok) {
+        toast.error("error while update post. check your internet !");
+        return;
+      }
+      toast.success("Post Updated !");
+      return;
+    } catch (error) {
+      console.log(`Error while updating: `, error);
+      toast.error("check your internet");
+    }
+  };
+
+  return { GetAllPost, updatePost };
 };
 
 export default useGetPost;

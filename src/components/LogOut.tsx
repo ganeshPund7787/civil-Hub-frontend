@@ -11,7 +11,7 @@ import {
 } from "@/App/features/clientSlice";
 import { toast } from "react-toastify";
 
-const LogOut = () => {  
+const LogOut = () => {
   const disptch = useAppDispatch();
 
   const logOutUser = async () => {

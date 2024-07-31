@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ToastContainer
       position="top-right"
-      autoClose={3000}
+      autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick
@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="dark"
+      theme="colored"
     />
     <Provider store={store}>
       <App />
