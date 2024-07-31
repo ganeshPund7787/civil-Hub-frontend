@@ -16,7 +16,7 @@ import ProjectSection from "@/components/civilUser/ProjectSection";
 import LogOut from "@/components/LogOut";
 import CreatePost from "@/components/CreatePost";
 import { useEffect, useState } from "react";
-import useGetPost from "@/Hooks/useGetPost";
+import useGetPost from "@/Hooks/useFetchPost";
 import PostCard from "@/components/PostCard";
 
 const Profile = () => {

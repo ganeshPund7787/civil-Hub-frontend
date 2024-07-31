@@ -3,6 +3,8 @@ import { CivilUserType, ClientType, PostType } from "@/types";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import EditPost from "./EditPost";
+import { MdDelete } from "react-icons/md";
+import useGetPost from "@/Hooks/useFetchPost";
 
 type Props = {
   post: PostType;
@@ -11,6 +13,7 @@ type Props = {
 
 const PostCard = ({ post, user }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { deletePost } = useGetPost();
   const toggleReadMore = () => {
     setIsExpanded(!isExpanded);
   };
@@ -20,6 +23,10 @@ const PostCard = ({ post, user }: Props) => {
       : "photoUrl" in user
       ? user.photoUrl
       : null;
+
+  const OnClickDeletePost = () => {
+    deletePost(post._id);
+  };
 
   return (
     <div className="flex flex-col md:mx-52 border border-slate-500">
@@ -35,7 +42,10 @@ const PostCard = ({ post, user }: Props) => {
           )}
           <h1>{user.fullName}</h1>
         </div>
-        <div className="flex mr-5 items-center">
+        <div className="flex gap-5 mx-2 items-center">
+          <Button onClick={OnClickDeletePost} type="button" title="Delete Post">
+            <MdDelete size={20} />
+          </Button>
           <EditPost post={post} />
         </div>
       </div>

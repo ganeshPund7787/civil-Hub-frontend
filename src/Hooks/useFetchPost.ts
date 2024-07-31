@@ -50,7 +50,24 @@ const useGetPost = () => {
     }
   };
 
-  return { GetAllPost, updatePost };
+  const deletePost = async (postId: string) => {
+    try {
+      const res = await fetch(`${BACKEND_API_URL}/api/post/delete/${postId}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!res.ok) {
+        toast.error("Error on delete post. ckeck Your internet!");
+        return;
+      }
+      toast.success("Post Deleted !");
+      return;
+    } catch (error) {
+      toast.error("Error on delete post. ckeck Your internet!");
+      console.log(`Error while delete Post`, error);
+    }
+  };
+  return { GetAllPost, updatePost, deletePost };
 };
 
 export default useGetPost;

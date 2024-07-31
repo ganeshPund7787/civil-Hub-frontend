@@ -25,7 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FaImage } from "react-icons/fa";
 import { MdEditSquare } from "react-icons/md";
 import { toast } from "react-toastify";
-import useGetPost from "@/Hooks/useGetPost";
+import useGetPost from "@/Hooks/useFetchPost";
 
 const formSchema = z.object({
   image: z.string().trim().optional(),
@@ -92,7 +92,7 @@ const EditPost = ({ post }: Props) => {
           type="button"
           className="flex gap-3"
         >
-          <MdEditSquare />
+          <MdEditSquare size={20} />
         </Button>
       </DialogTrigger>
 
