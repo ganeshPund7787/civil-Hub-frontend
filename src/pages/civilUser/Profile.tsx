@@ -199,6 +199,11 @@ const Profile = () => {
                           user={CurrentCivilUser}
                         />
                       ))}
+                    {normalizedPosts.length === 0 && (
+                      <div className="text-center text-red-500 text-2xl">
+                        You are not post any Post
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -204,8 +204,12 @@ const EditProfile = () => {
                 )}
               />
               <div className="flex justify-between mt-1 md:mt-5 items-center">
-                <Button type="submit" className="bg-cyan-500 rounded px-5">
-                  {Clientloading ? (
+                <Button
+                  type="submit"
+                  disabled={Clientloading || uploading}
+                  className="bg-cyan-500 rounded px-5"
+                >
+                  {Clientloading || uploading ? (
                     <span className="loading text-cyan-600 loading-spinner"></span>
                   ) : (
                     "Save"

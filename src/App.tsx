@@ -20,6 +20,7 @@ import SignUpClient from "./pages/client User/SignUpClient";
 import { CivilProtectRoute } from "./components/CivilProtectRoute";
 import ClientProtectRoute from "./components/ClientProtectRoute";
 import ClientProfile from "./pages/client User/ClientProfile";
+import CreateJobPost from "./components/ClientUser/CreateJobPost";
 
 const App: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
@@ -67,6 +68,14 @@ const App: React.FC = () => {
             element={
               <Layout showHero={false}>
                 <ClientProfile />
+              </Layout>
+            }
+          />
+          <Route
+            path="/create-job-post"
+            element={
+              <Layout showHero={false}>
+                <CreateJobPost />
               </Layout>
             }
           />

@@ -5,6 +5,7 @@ import { useState } from "react";
 import EditPost from "./EditPost";
 import { MdDelete } from "react-icons/md";
 import useGetPost from "@/Hooks/useFetchPost";
+import { toast } from "react-toastify";
 
 type Props = {
   post: PostType;
@@ -25,6 +26,11 @@ const PostCard = ({ post, user }: Props) => {
       : null;
 
   const OnClickDeletePost = () => {
+    const userConfirmed = confirm("Are you sure you delete post ?");
+    if (!userConfirmed) {
+      toast.warning("Cancle post delete");
+      return;
+    }
     deletePost(post._id);
   };
 
@@ -56,12 +62,14 @@ const PostCard = ({ post, user }: Props) => {
             ? post.description
             : `${(post?.description as string).substring(0, 100)}...`}
         </span>
-        <button
-          onClick={toggleReadMore}
-          className="text-blue-500 text-xs hover:text-blue-700 font-medium ml-2"
-        >
-          {isExpanded ? "Read Less" : "Read More"}
-        </button>
+        {(post?.description as string).length > 60 && (
+          <button
+            onClick={toggleReadMore}
+            className="text-blue-500 text-xs hover:text-blue-700 font-medium ml-2"
+          >
+            {isExpanded ? "Read Less" : "Read More"}
+          </button>
+        )}
       </div>
       <div className="mx-3 mt-5">
         {post.image && (

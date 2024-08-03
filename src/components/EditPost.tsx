@@ -79,8 +79,8 @@ const EditPost = ({ post }: Props) => {
     }
 
     updatePost(post._id, values);
-    setComplete(true);
     form.reset();
+    setComplete(true);
   };
 
   return (
@@ -107,6 +107,7 @@ const EditPost = ({ post }: Props) => {
             <span>{Client?.fullName || CurrentCivilUser?.fullName}</span>
           </div>
         </DialogTitle>
+        <div className="text-cyan-400">Update Post</div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-2 mt-2 mb-5">
@@ -140,20 +141,29 @@ const EditPost = ({ post }: Props) => {
               </div>
             </div>
             <div className="flex justify-between">
-              <input
-                onChange={handleImageChange}
-                accept="image/*"
-                hidden
-                type="file"
-                ref={fileRef}
-              />
-              <Button
-                type="button"
-                onClick={() => fileRef.current && fileRef.current.click()}
-                title="Add image"
-              >
-                <FaImage size={25} />
-              </Button>
+              <div className="flex gap-3">
+                <input
+                  onChange={handleImageChange}
+                  accept="image/*"
+                  hidden
+                  type="file"
+                  ref={fileRef}
+                />
+                <Button
+                  type="button"
+                  onClick={() => fileRef.current && fileRef.current.click()}
+                  title="Add image"
+                >
+                  <FaImage size={25} />
+                </Button>
+                {imageFileUrl && (
+                  <img
+                    className="rounded-full h-10 w-10 object-cover"
+                    src={imageFileUrl || undefined}
+                    alt=""
+                  />
+                )}
+              </div>
               {!isComplete ? (
                 <Button
                   disabled={loading || Clientloading}
@@ -161,7 +171,7 @@ const EditPost = ({ post }: Props) => {
                   type="submit"
                   variant="ghost"
                 >
-                  Post
+                  Update
                 </Button>
               ) : (
                 <DialogFooter>

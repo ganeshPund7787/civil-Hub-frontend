@@ -45,12 +45,12 @@ const useUploadImg = () => {
   const storeImage = async (file: File | null): Promise<string> => {
     if (!file) return "";
     setError(false);
+    setUploading(true);
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
       const fileName = new Date().getTime() + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
-      setUploading(true);
       uploadTask.on(
         "state_changed",
         (snapshot) => {

@@ -13,14 +13,14 @@ const SelectRoleFoeSignUp = () => {
         <div className="flex md:flex-row flex-col gap-12">
           <Link
             to={"/sign-up-client"}
-            className="h-52 w-52 p-5 text-2xl border-4 hover:bg-slate-900 border-slate-500 rounded hover:border-cyan-500"
+            className="h-52 w-52 rounded-2xl p-5 text-2xl border-4 hover:bg-slate-900 border-slate-500 hover:border-cyan-500"
           >
             <FcBusinessman size={25} />
             <p className="mt-5">I am a client , hiring for project </p>
           </Link>
           <Link
             to={"/sign-up-user"}
-            className="h-52 w-52 p-5 text-2xl border-4 hover:bg-slate-900 border-slate-500 rounded hover:border-cyan-500"
+            className="h-52 w-52 rounded-2xl p-5 text-2xl border-4 hover:bg-slate-900 border-slate-500 hover:border-cyan-500"
           >
             <MdPersonSearch size={25} />
             <p className="mt-4">I am a freelancer , looking for work </p>

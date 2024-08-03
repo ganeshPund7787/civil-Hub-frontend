@@ -15,6 +15,8 @@ interface FormInputProps {
   placeholder: string;
   type?: string;
   defaultValue?: any;
+  min?: number | undefined;
+  max?: number | undefined;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -23,6 +25,8 @@ const FormInput: React.FC<FormInputProps> = ({
   placeholder,
   type = "text",
   defaultValue = "",
+  max = undefined,
+  min = undefined,
 }) => {
   return (
     <FormField
@@ -39,6 +43,8 @@ const FormInput: React.FC<FormInputProps> = ({
               defaultValue={defaultValue}
               type={type}
               {...field}
+              max={max}
+              min={min}
             />
           </FormControl>
         </FormItem>

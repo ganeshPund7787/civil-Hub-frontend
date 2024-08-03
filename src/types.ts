@@ -79,3 +79,16 @@ export type PostType = {
     comment: string;
   }[];
 };
+
+export type JobPostType = {
+  _id?: string;
+  clientId?: any;
+  heading?: string;
+  description?: string;
+  experianceLevel?: string;
+  skills?: string[];
+  HoursePerWeak?: number;
+  projectDuration?: string;
+  location?: string;
+  lastUpdated?: Date;
+};

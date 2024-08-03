@@ -36,7 +36,7 @@ const CreatePost = () => {
   const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
   const { Client, Clientloading } = useAppSelectore((state) => state.client);
 
-  const { storeImage } = useUploadImg();
+  const { storeImage, uploading } = useUploadImg();
   const fileRef = useRef<HTMLInputElement>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageFileUrl, setImageFileUrl] = useState<string | null>(null);
@@ -67,6 +67,7 @@ const CreatePost = () => {
     console.log(values);
     createPost({ formData: values });
     setComplite(true);
+    setImageFileUrl("");
     form.reset();
   };
 
@@ -144,8 +145,8 @@ const CreatePost = () => {
               </Button>
               {!isComplite ? (
                 <Button
-                  disabled={loading || Clientloading}
-                  className={`disabled:cursor-pointer bg-cyan-500 rounded`}
+                  disabled={loading || Clientloading || uploading}
+                  className={`disabled:cursor-pointer disabled:bg-cyan-300  bg-cyan-500 rounded`}
                   type="submit"
                   variant="ghost"
                 >

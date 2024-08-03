@@ -3,13 +3,35 @@ import { useAppDispatch, useAppSelectore } from "@/App/store";
 import EditProfile from "@/components/ClientUser/EditProfile";
 import CreatePost from "@/components/CreatePost";
 import LogOut from "@/components/LogOut";
+import PostCard from "@/components/PostCard";
 import { Button } from "@/components/ui/button";
+import useGetPost from "@/Hooks/useFetchPost";
+import { PostType } from "@/types";
+import { useEffect, useState } from "react";
 import { MdModeEditOutline } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
+import { Link } from "react-router-dom";
 
 const ClientProfile = () => {
-  const { Client, isUpdate } = useAppSelectore((state) => state.client);
+  const { Client, isUpdate, Clientloading } = useAppSelectore(
+    (state) => state.client
+  );
   const dispatch = useAppDispatch();
+  const { GetAllPost } = useGetPost();
+  const [posts, setPosts] = useState<PostType | []>([]);
+  const normalizedPosts = Array.isArray(posts) ? posts : [posts];
+
+  const GetPost = async () => {
+    if (Client) {
+      const res = await GetAllPost();
+      setPosts(res);
+    }
+  };
+
+  useEffect(() => {
+    GetPost();
+  }, [Clientloading, posts]);
+
   return (
     <>
       {Client && (
@@ -95,7 +117,7 @@ const ClientProfile = () => {
                   </div>
                 )}
               </div>
-              <div className="flex mt-5 flex-col min-h-full md:p-5">
+              <div className="flex mt-5 gap-7 flex-col min-h-full md:p-5">
                 <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
                   <div className="flex items-center justify-between p-5">
                     <h1 className="text-2xl font-semibold">
@@ -103,6 +125,25 @@ const ClientProfile = () => {
                     </h1>
                     <CreatePost />
                   </div>
+                  <div className="p-5">
+                    {" "}
+                    {posts &&
+                      normalizedPosts?.map((post: PostType) => (
+                        <PostCard key={post._id} post={post} user={Client} />
+                      ))}
+                  </div>
+                </div>
+                <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
+                  <div className="flex items-center justify-between p-5">
+                    <h1 className="text-2xl font-semibold">Hiring Updates </h1>
+                    <Link
+                      to={"/create-job-post"}
+                      className="border hover:bg-white p-3 text-sm font-semibold hover:text-black  rounded-full"
+                    >
+                      Post Hiring Updates
+                    </Link>
+                  </div>
+                  <div className="p-5"></div>
                 </div>
               </div>
               <LogOut />

@@ -55,10 +55,9 @@ export const useCivilApi = () => {
     const data = await res.json();
 
     if (data.success === false) {
-      console.log(`Data success false`);
+      toast.warning(data.message);
       dispatch(fetchFail());
       dispatch(fetchFailClient());
-      toast.error(data.message);
       return;
     }
 
