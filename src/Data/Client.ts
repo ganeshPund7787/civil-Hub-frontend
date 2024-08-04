@@ -21,10 +21,3 @@ export const skills = [
   "Time Management",
   "Problem-Solving",
 ] as const;
-
-export const projectDuration = [
-  "less than 1 month",
-  "1 to 3 months",
-  "3 to 6 months",
-  "more than 6 months",
-] as const;

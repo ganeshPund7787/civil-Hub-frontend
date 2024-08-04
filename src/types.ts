@@ -88,7 +88,6 @@ export type JobPostType = {
   experianceLevel?: string;
   skills?: string[];
   HoursePerWeak?: number;
-  projectDuration?: string;
   location?: string;
   lastUpdated?: Date;
 };
