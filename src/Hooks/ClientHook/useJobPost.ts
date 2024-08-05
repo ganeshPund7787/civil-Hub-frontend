@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const useJobPost = () => {
   const navigate = useNavigate();
+
   const createPost = async (data: JobPostType) => {
     try {
       const res = await fetch(`${BACKEND_API_URL}/api/job-post/create`, {
@@ -27,7 +28,21 @@ const useJobPost = () => {
       console.log(`Error while crea Job Post: `, error);
     }
   };
-  return { createPost };
+
+  const getJobPosts = async () => {
+    try {
+      const res = await fetch(`${BACKEND_API_URL}/api/job-post`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data);
+      return data;
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+  return { createPost, getJobPosts };
 };
 
 export default useJobPost;

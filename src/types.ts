@@ -84,6 +84,7 @@ export type JobPostType = {
   _id?: string;
   clientId?: any;
   heading?: string;
+  salary?: string;
   description?: string;
   experianceLevel?: string;
   skills?: string[];
@@ -91,3 +92,5 @@ export type JobPostType = {
   location?: string;
   lastUpdated?: Date;
 };
+
+

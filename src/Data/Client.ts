@@ -21,3 +21,12 @@ export const skills = [
   "Time Management",
   "Problem-Solving",
 ] as const;
+
+export const salaryExeptation = [
+  "5k to 10k",
+  "10k to 20k",
+  "20k to 30k",
+  "30k to 50k",
+  "50k to 80k",
+  "80k to 100k",
+] as const;

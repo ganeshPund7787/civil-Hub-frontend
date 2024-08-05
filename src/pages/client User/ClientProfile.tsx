@@ -1,5 +1,6 @@
 import { updateStartClient } from "@/App/features/clientSlice";
 import { useAppDispatch, useAppSelectore } from "@/App/store";
+import AllJobPost from "@/components/ClientUser/AllJobPost";
 import EditProfile from "@/components/ClientUser/EditProfile";
 import CreatePost from "@/components/CreatePost";
 import LogOut from "@/components/LogOut";
@@ -133,7 +134,7 @@ const ClientProfile = () => {
                       ))}
                   </div>
                 </div>
-                <div className="border-2 border-slate-500 rounded md:rounded-[1rem]">
+                <div className=" rounded md:rounded-[1rem]">
                   <div className="flex items-center justify-between p-5">
                     <h1 className="text-2xl font-semibold">Hiring Updates </h1>
                     <Link
@@ -143,7 +144,9 @@ const ClientProfile = () => {
                       Post Hiring Updates
                     </Link>
                   </div>
-                  <div className="p-5"></div>
+                  <div className="p-5">
+                    <AllJobPost />
+                  </div>
                 </div>
               </div>
               <LogOut />
