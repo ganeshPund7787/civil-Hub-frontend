@@ -165,6 +165,8 @@ const CreateJobPost = () => {
                 </p>
                 <FormControl>
                   <textarea
+                    maxLength={1000}
+                    minLength={50}
                     placeholder="write more details about job"
                     className="rounded-[5px] h-[10rem] p-1 w-full border fixed-size-textarea resize-none border-slate-600 bg-transparent"
                     {...field}
