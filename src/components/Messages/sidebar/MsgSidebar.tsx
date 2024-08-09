@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import SearchInput from "./SearchInput";
 import { Button } from "@/components/ui/button";
 import ClientConversations from "./ClientConversations";
 import CivilConversations from "./CivilConversations";
 
-const MsgSidebar: React.FC = () => {
+const MsgSidebar = () => {
   const [activeButton, setActiveButton] = useState<string | null>("Client");
   const [selectType, setSelectType] = useState("Client");
 

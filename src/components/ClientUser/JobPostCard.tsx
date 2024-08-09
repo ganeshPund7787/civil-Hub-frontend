@@ -9,7 +9,7 @@ const JobPostCard = ({ post }: any) => {
         <span className="text-slate-500">
           Post on {createdAt.toLocaleDateString()}
         </span>
-        <div className="">
+        <div className="s">
           <JobPostDetails post={post} />
         </div>
       </div>

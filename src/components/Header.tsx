@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
 import { Input } from "./ui/input";
 import { FaSearch } from "react-icons/fa";
 import { useAppSelectore } from "@/App/store";
@@ -9,7 +9,7 @@ import MobileNav from "./MobNav";
 import { MdOutlineFindInPage } from "react-icons/md";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 
-const Header: React.FC = () => {
+const Header = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
   const { Client } = useAppSelectore((state) => state.client);
 
@@ -17,23 +17,32 @@ const Header: React.FC = () => {
     <>
       <nav className="flex sticky justify-between p-4">
         <div className="flex gap-5 items-center">
-          <h1 className="text-3xl text-cyan-400  font-semibold">civilHub</h1>
+          <h1 className="text-3xl text-cyan-400 font-semibold">civilHub</h1>
           <div className="md:flex hidden mx-8 gap-8">
-            <Link
-              className="active:text-cyan-500 p-1 hover:text-cyan-500 rounded-[4px] border-none hover:underline border-slate-950 hover:border-cyan-600 flex items-center gap-2"
-              to={"/"}
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `p-1 rounded-[4px] border-none flex items-center gap-2 ${
+                  isActive ? "text-cyan-500 underline" : " hover:underline"
+                }`
+              }
             >
               Find Work <MdOutlineFindInPage />
-            </Link>
+            </NavLink>
 
-            <Link
-              className="active:text-cyan-500 p-1 hover:text-cyan-500 rounded-[4px] border-none hover:underline border-slate-950 hover:border-cyan-600 flex items-center gap-2"
-              to={"/messages"}
+            <NavLink
+              to="/messages"
+              className={({ isActive }) =>
+                `p-1 rounded-[4px] border-none flex items-center gap-2 ${
+                  isActive ? "text-cyan-500 underline" : " hover:underline"
+                }`
+              }
             >
               Messages <BiSolidMessageSquareDetail />
-            </Link>
+            </NavLink>
           </div>
         </div>
+
         <div className="md:flex hidden items-center gap-5">
           <div className="flex items-center rounded-[1rem] border border-slate-600 px-2 w-72 ">
             <Input
@@ -45,28 +54,29 @@ const Header: React.FC = () => {
           </div>
           {CurrentCivilUser ? (
             <Avatar>
-              <Link to={"/user-profile"}>
+              <NavLink to="/user-profile">
                 <AvatarImage
                   src={CurrentCivilUser?.photoUrl}
                   className="object-cover"
                   alt="@shadcn"
                 />
                 <AvatarFallback>CN</AvatarFallback>
-              </Link>
+              </NavLink>
             </Avatar>
           ) : (
             <Avatar>
-              <Link to={"/client-profile"}>
+              <NavLink to="/client-profile">
                 <AvatarImage
                   src={Client?.profilePictureUrl}
                   className="object-cover"
                   alt="@shadcn"
                 />
                 <AvatarFallback>CN</AvatarFallback>
-              </Link>
+              </NavLink>
             </Avatar>
           )}
         </div>
+
         <div className="md:hidden block">
           <MobileNav />
         </div>

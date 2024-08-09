@@ -51,7 +51,7 @@ const JobPostDetails = ({ post }: any) => {
       <Sheet>
         <SheetTrigger asChild>
           <Button
-            className="hover:text-cyan-400 text-[1.3rem] hover:underline cursor-pointer"
+            className="hover:text-cyan-400 truncate text-xs sm:text-[1.3rem] hover:underline cursor-pointer"
             variant="ghost"
           >
             {post?.heading}
