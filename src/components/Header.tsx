@@ -6,6 +6,8 @@ import { useAppSelectore } from "@/App/store";
 import { Avatar } from "./ui/avatar";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import MobileNav from "./MobNav";
+import { MdOutlineFindInPage } from "react-icons/md";
+import { BiSolidMessageSquareDetail } from "react-icons/bi";
 
 const Header: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
@@ -16,12 +18,20 @@ const Header: React.FC = () => {
       <nav className="flex sticky justify-between p-4">
         <div className="flex gap-5 items-center">
           <h1 className="text-3xl text-cyan-400  font-semibold">civilHub</h1>
-          <div className="md:flex hidden mx-8 gap-5">
-            <Link className="active:text-cyan-500" to={"/"}>
-              Find Work
+          <div className="md:flex hidden mx-8 gap-8">
+            <Link
+              className="active:text-cyan-500 p-1 hover:text-cyan-500 rounded-[4px] border-none hover:underline border-slate-950 hover:border-cyan-600 flex items-center gap-2"
+              to={"/"}
+            >
+              Find Work <MdOutlineFindInPage />
             </Link>
-            <Link to={"/"}>Saved Jobs</Link>
-            <Link to={"/"}>Messages</Link>
+
+            <Link
+              className="active:text-cyan-500 p-1 hover:text-cyan-500 rounded-[4px] border-none hover:underline border-slate-950 hover:border-cyan-600 flex items-center gap-2"
+              to={"/messages"}
+            >
+              Messages <BiSolidMessageSquareDetail />
+            </Link>
           </div>
         </div>
         <div className="md:flex hidden items-center gap-5">
@@ -37,7 +47,7 @@ const Header: React.FC = () => {
             <Avatar>
               <Link to={"/user-profile"}>
                 <AvatarImage
-                  src={CurrentCivilUser.photoUrl}
+                  src={CurrentCivilUser?.photoUrl}
                   className="object-cover"
                   alt="@shadcn"
                 />
@@ -48,7 +58,7 @@ const Header: React.FC = () => {
             <Avatar>
               <Link to={"/client-profile"}>
                 <AvatarImage
-                  src={Client.profilePictureUrl}
+                  src={Client?.profilePictureUrl}
                   className="object-cover"
                   alt="@shadcn"
                 />

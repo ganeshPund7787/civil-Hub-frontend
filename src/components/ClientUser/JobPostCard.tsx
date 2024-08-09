@@ -17,7 +17,7 @@ const JobPostCard = ({ post }: any) => {
       <div className="flex flex-wrap mt-2 text-sm gap-2 text-slate-300">
         <span>Monthly</span>
         <span>{post.salary} salary</span>/<span>Less than </span>
-        <span>{post.HoursPerWeek} Hours work per week</span>
+        <span>{post.HoursePerWeak} Hours work per week</span>
       </div>
 
       <div className="line-clamp-2 mt-5 text-slate-300">{post.description}</div>

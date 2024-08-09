@@ -93,4 +93,65 @@ export type JobPostType = {
   lastUpdated?: Date;
 };
 
+// Name :text
 
+// Taluka:text
+
+// Gav:text
+
+// Photo: file
+
+// Address : textarea
+
+// Adhar_no : 12 digit
+
+// Adhar photo: file
+
+// Birthdate : date
+
+// Mobile no : 10 digit 
+
+// Family Member: 5 input text      for family members 
+
+// Caste : select tag
+
+// registration_no: text
+
+// registration_date : date
+
+// Renewal_date : date
+
+// Milalela_labh: select tag
+
+
+// Tekedar_name
+// Drag_down list name (select tag)
+
+// Form_upload: file upload
+
+// Shifaras_denayache_name: text
+
+// Gav_pramukg Name: text
+
+
+// Sabhad_fee
+// New Sabhasad=400 Rs
+// Old Sabhasad=200 Rs
+// : Radio ,only one select here
+
+
+// Form_satus
+// Approved
+// Pending
+// Rejected : 
+// Select tag
+
+
+// Labh_sanch Milala
+// Yes
+// No : radio
+
+
+
+// Helpful
+// Yes

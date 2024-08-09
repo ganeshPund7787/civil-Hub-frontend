@@ -74,7 +74,7 @@ const ImageUploadDialog: React.FC = () => {
         body: JSON.stringify(certification),
       });
       const data = await res.json();
-      console.log(data);
+      
       if (data.success === false) {
         disptch(updateFail());
         toast.error(data.message);

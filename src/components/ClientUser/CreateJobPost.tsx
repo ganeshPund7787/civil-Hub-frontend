@@ -136,6 +136,7 @@ const CreateJobPost = () => {
               </label>
             ))}
           </div>
+          
           <div className="flex-1 md:w-1/2">
             <label htmlFor="experienceLevel">Salary Exeptation </label>
             <Controller

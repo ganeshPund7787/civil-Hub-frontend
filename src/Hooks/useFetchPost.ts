@@ -13,7 +13,7 @@ const useGetPost = () => {
         credentials: "include",
       });
       if (!res.ok) {
-        toast.error("Error while get post");
+        toast.error("Check Your Internet");
         return;
       }
       const data = await res.json();

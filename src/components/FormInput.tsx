@@ -1,3 +1,64 @@
+// import React from "react";
+
+// import {
+//   FormField,
+//   FormItem,
+//   FormLabel,
+//   FormMessage,
+//   FormControl,
+// } from "@/components/ui/form";
+// import { Input } from "@/components/ui/input";
+
+// interface FormInputProps {
+//   name: string;
+//   label: string;
+//   placeholder: string;
+//   type?: string;
+//   defaultValue?: any;
+//   min?: number | undefined;
+//   max?: number | undefined;
+//   control: any;
+// }
+
+// const FormInput: React.FC<FormInputProps> = ({
+//   name,
+//   label,
+//   placeholder,
+//   type = "text",
+//   defaultValue = "",
+//   max = undefined,
+//   min = undefined,
+//   control,
+// }) => {
+//   return (
+//     <FormField
+//       control={control}
+//       name={name}
+//       render={({ field }) => (
+//         <FormItem>
+//           <FormLabel className="text-black">{label}</FormLabel>
+//           <FormMessage className="text-red-600" />
+//           <FormControl>
+//             <Input
+//               placeholder={placeholder}
+//               className="rounded-[5px] focus:outline-cyan-600 text-black"
+//               // text-slate-300
+//               autoFocus
+//               defaultValue={defaultValue}
+//               type={type}
+//               {...field}
+//               max={max}
+//               min={min}
+//             />
+//           </FormControl>
+//         </FormItem>
+//       )}
+//     />
+//   );
+// };
+
+// export default FormInput;
+
 import React from "react";
 
 import {
