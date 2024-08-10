@@ -10,8 +10,11 @@ const useGetCivilUserConversation = () => {
     const getConversation = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${BACKEND_API_URL}/api/user/getAll`, {
+        const res = await fetch(`${BACKEND_API_URL}/api/user/getAllCivil`, {
           method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "include",
         });
         const data = await res.json();

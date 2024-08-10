@@ -10,6 +10,9 @@ const useGetPost = () => {
     try {
       const res = await fetch(`${BACKEND_API_URL}/api/post/get`, {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
       });
       if (!res.ok) {
@@ -54,6 +57,9 @@ const useGetPost = () => {
     try {
       const res = await fetch(`${BACKEND_API_URL}/api/post/delete/${postId}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
       });
       if (!res.ok) {

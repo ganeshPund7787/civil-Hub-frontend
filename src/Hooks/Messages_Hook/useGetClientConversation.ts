@@ -10,12 +10,15 @@ const useGetClientConversation = () => {
     const getConversation = async () => {
       setLoading(true);
       try {
-          const res = await fetch(`${BACKEND_API_URL}/api/client/getAll`, {
-              method: "GET",
-              credentials : "include"
+        const res = await fetch(`${BACKEND_API_URL}/api/client/getAll`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         });
         const data = await res.json();
-        
+
         if (data.success === false) {
           throw new Error(data.message);
         }

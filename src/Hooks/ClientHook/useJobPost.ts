@@ -31,8 +31,11 @@ const useJobPost = () => {
 
   const getJobPosts = async () => {
     try {
-      const res = await fetch(`${BACKEND_API_URL}/api/job-post`, {
+      const res = await fetch(`${BACKEND_API_URL}/api/job-post/getJobPost`, {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
       });
       const data = await res.json();
