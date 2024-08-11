@@ -1,7 +1,8 @@
+import { CivilUserType } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ConversationState {
-  selectedConversation: null | string;
+  selectedConversation: null | ClientTypes | CivilUserType | any;
   messages: string[];
 }
 
@@ -14,12 +15,16 @@ export const ConversationSlice = createSlice({
   name: "conversation",
   initialState,
   reducers: {
-    setSelectedConversation: (state, action: PayloadAction<string>) => {
+    setSelectedConversation: (
+      state,
+      action: PayloadAction<ClientTypes | CivilUserType | any>
+    ) => {
       state.selectedConversation = action.payload;
     },
     setMessages: (state, action: PayloadAction<string[] | []>) => {
       state.messages = action.payload;
     },
+    
   },
 });
 

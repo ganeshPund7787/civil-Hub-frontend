@@ -3,11 +3,13 @@ import { civilUserSlice } from "../App/features/civilUser";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ClientSlice } from "./features/clientSlice";
+import { ConversationSlice } from "./features/ConversationSlice";
 
 export const store = configureStore({
   reducer: {
     user: civilUserSlice.reducer,
     client: ClientSlice.reducer,
+    conversation: ConversationSlice.reducer,
   },
 });
 

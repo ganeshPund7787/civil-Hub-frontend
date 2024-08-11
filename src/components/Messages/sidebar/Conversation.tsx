@@ -1,3 +1,5 @@
+import { setSelectedConversation } from "@/App/features/ConversationSlice";
+import { useAppDispatch, useAppSelectore } from "@/App/store";
 import { CivilUserType } from "@/types";
 
 type Props = {
@@ -7,11 +9,15 @@ type Props = {
 };
 
 const Conversation = ({ conversation, emoji, lastIdx }: Props) => {
+  const { selectedConversation } = useAppSelectore((c) => c.conversation);
+  const isSelected = selectedConversation?._id === conversation?._id;
+  const dispatch = useAppDispatch();
   return (
     <>
       <div
         className={`flex gap-2 hover:bg-cyan-500 rounded p-2 py-1 cursor-pointer
-          ${false ? "bg-sky-500" : ""}`}
+          ${isSelected ? "bg-sky-500" : ""}`}
+        onClick={() => dispatch(setSelectedConversation(conversation))}
       >
         <div className={`avatar ${true ? "online" : ""}`}>
           <div className="w-12 rounded-full">
