@@ -39,9 +39,9 @@ export const SocketContextProvider: React.FC<SocketContextProviderProps> = ({
 
   useEffect(() => {
     if (CurrentCivilUser || Client) {
-      const socket = io("https://mern-chat-app-ws2l.onrender.com", {
+      const socket = io("http://localhost:3000", {
         query: {
-          userId: CurrentCivilUser._id,
+          userId: CurrentCivilUser?._id || Client?._id,
         },
       });
 

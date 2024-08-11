@@ -24,10 +24,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       pauseOnHover
       theme="colored"
     />
-    <SocketContextProvider>
-      <Provider store={store}>
+    <Provider store={store}>
+      <SocketContextProvider> 
         <App />
-      </Provider>
-    </SocketContextProvider>
+      </SocketContextProvider>
+    </Provider>
   </React.StrictMode>
 );
