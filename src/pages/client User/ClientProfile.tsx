@@ -114,7 +114,7 @@ const ClientProfile = () => {
                 {Client.bio && (
                   <div className="gap-3">
                     <span> * Bio : </span>
-                    <div>{Client.bio}</div>
+                    <div className="flex flex-wrap">{Client.bio}</div>
                   </div>
                 )}
               </div>

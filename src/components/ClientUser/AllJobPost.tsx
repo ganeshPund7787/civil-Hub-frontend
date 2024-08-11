@@ -17,7 +17,11 @@ const AllJobPost = () => {
   return (
     <div className="h-full w-full flex flex-col gap-8">
       {jobPost.length > 0 &&
-        jobPost?.map((post: JobPostType) => <JobPostCard post={post} />)}
+        jobPost?.map((post: JobPostType) => (
+          <div className="">
+            <JobPostCard post={post} />
+          </div>
+        ))}
     </div>
   );
 };

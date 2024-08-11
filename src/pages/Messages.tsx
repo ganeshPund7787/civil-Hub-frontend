@@ -1,12 +1,12 @@
-// import MsgContainer from "@/components/Messages/MsgContainer";
 
+import MsgContainer from "@/components/Messages/Msg_Container/MsgContainer";
 import MsgSidebar from "@/components/Messages/sidebar/MsgSidebar";
 
 const Messages = () => {
   return (
     <div className="flex">
       <MsgSidebar />
-      {/* <MsgContainer /> */}
+      <MsgContainer />
     </div>
   );
 };
