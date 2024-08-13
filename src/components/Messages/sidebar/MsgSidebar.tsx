@@ -15,7 +15,7 @@ const MsgSidebar = () => {
   };
 
   return (
-    <div className="flex border h-[40rem] sm:h-[32rem] p-3 border-slate-600 flex-col gap-5">
+    <div className="flex borderp-3 border-slate-600 flex-col gap-5">
       <div>
         <h1 className="md:text-3xl text-cyan-400 font-semibold">Messages</h1>
       </div>

@@ -1,5 +1,6 @@
 import { setSelectedConversation } from "@/App/features/ConversationSlice";
 import { useAppDispatch, useAppSelectore } from "@/App/store";
+import { useSocketContext } from "@/context/SocketContext";
 import { CivilUserType } from "@/types";
 
 type Props = {
@@ -12,6 +13,8 @@ const Conversation = ({ conversation, emoji, lastIdx }: Props) => {
   const { selectedConversation } = useAppSelectore((c) => c.conversation);
   const isSelected = selectedConversation?._id === conversation?._id;
   const dispatch = useAppDispatch();
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(conversation._id);
   return (
     <>
       <div
@@ -19,7 +22,7 @@ const Conversation = ({ conversation, emoji, lastIdx }: Props) => {
           ${isSelected ? "bg-sky-500" : ""}`}
         onClick={() => dispatch(setSelectedConversation(conversation))}
       >
-        <div className={`avatar ${true ? "online" : ""}`}>
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img
               src={conversation?.profilePictureUrl || conversation?.photoUrl}

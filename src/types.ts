@@ -94,10 +94,10 @@ export type JobPostType = {
   lastUpdated?: Date;
 };
 
-
 export type MessageType = {
   _id: any;
   senderId: any;
   createdAt: Date | any;
   message: string;
+  shouldShake: boolean;
 };

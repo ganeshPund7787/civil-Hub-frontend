@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelectore } from "@/App/store";
 import { useEffect } from "react";
 import { TiMessages } from "react-icons/ti";
 import MessageInput from "./MessageInput";
+import Messages from "./Messages";
 
 const MsgContainer = () => {
   const { selectedConversation } = useAppSelectore((c) => c.conversation);
@@ -13,7 +14,7 @@ const MsgContainer = () => {
   }, []);
 
   return (
-    <div className="md:min-w-[450px] flex flex-col">
+    <div className="md:min-w-[450px]  flex  flex-col justify-between">
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (
@@ -31,7 +32,7 @@ const MsgContainer = () => {
               {selectedConversation.fullName}
             </span>
           </div>
-          {/* <Messages /> */}
+          <Messages />
           <MessageInput />
         </>
       )}
