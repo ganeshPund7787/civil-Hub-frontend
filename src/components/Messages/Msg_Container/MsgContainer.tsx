@@ -32,7 +32,8 @@ const MsgContainer = () => {
               {selectedConversation.fullName}
             </span>
           </div>
-          <Messages />
+            <Messages />
+            
           <MessageInput />
         </>
       )}

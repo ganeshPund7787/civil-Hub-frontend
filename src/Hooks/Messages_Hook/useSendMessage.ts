@@ -27,7 +27,7 @@ const useSendMessage = () => {
       );
 
       const data = await res.json();
-      console.log("Send Responce: ", data);
+      
       if (data.success === false) throw new Error(data.message);
 
       dispatch(setMessages([...messages, data]));

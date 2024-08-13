@@ -22,6 +22,7 @@ import ClientProtectRoute from "./components/ClientProtectRoute";
 import ClientProfile from "./pages/client User/ClientProfile";
 import CreateJobPost from "./components/ClientUser/CreateJobPost";
 import Messages from "./pages/Messages";
+import Home from "./pages/Home";
 
 const App: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
@@ -46,7 +47,7 @@ const App: React.FC = () => {
             path="/"
             element={
               <Layout showHero={false}>
-                <span>Home Page</span>
+                <Home />
               </Layout>
             }
           />
