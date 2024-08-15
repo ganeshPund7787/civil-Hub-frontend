@@ -23,6 +23,7 @@ import ClientProfile from "./pages/client User/ClientProfile";
 import CreateJobPost from "./components/ClientUser/CreateJobPost";
 import Messages from "./pages/Messages";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 
 const App: React.FC = () => {
   const { CurrentCivilUser } = useAppSelectore((state) => state.user);
@@ -56,6 +57,14 @@ const App: React.FC = () => {
             element={
               <Layout showHero={false}>
                 <Messages />
+              </Layout>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <Layout showHero={false}>
+                <Search />
               </Layout>
             }
           />

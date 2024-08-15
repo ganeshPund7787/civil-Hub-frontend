@@ -1,3 +1,4 @@
+import ClientPost from "@/components/ClientPost";
 import JobSearchInput from "@/components/JobSearchInput";
 
 const Home = () => {
@@ -5,7 +6,7 @@ const Home = () => {
     <>
       <div className="">
         <JobSearchInput />
-        
+        <ClientPost />
       </div>
     </>
   );

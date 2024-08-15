@@ -51,7 +51,7 @@ const JobPostDetails = ({ post }: any) => {
       <Sheet>
         <SheetTrigger asChild>
           <Button
-            className="hover:text-cyan-400 truncate text-xs sm:text-[1.3rem] hover:underline cursor-pointer"
+            className="hover:text-cyan-400 flex justify-start truncate text-xs sm:text-[1.3rem] hover:underline cursor-pointer"
             variant="ghost"
           >
             {post?.heading}
@@ -66,12 +66,12 @@ const JobPostDetails = ({ post }: any) => {
               {post?.heading}
             </SheetTitle>
           </SheetHeader>
-          <SheetDescription className="text-slate-100 flex gap-5 my-3">
+          <SheetDescription className="text-slate-100 flex flex-wrap gap-5 my-3">
             <div className="flex gap-2">
               <span>Experiance level : </span>
               <span>{post?.experianceLevel}</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <span>Monthly</span>
               <span>{post?.salary} salary</span>/<span>Less than </span>
               <span>{post?.HoursePerWeak} Hours work per week</span>

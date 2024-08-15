@@ -45,10 +45,10 @@ export const useCivilApi = () => {
     dispatch(fetchStartClient());
     const res = await fetch(`${BACKEND_API_URL}/api/auth/login`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "Application/json",
       },
-      credentials: "include",
       body: JSON.stringify(formData),
     });
 
