@@ -12,7 +12,7 @@ export const useClientApi = () => {
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
 
-  const SignUpClient = async ({ formData }: Props) => { 
+  const SignUpClient = async ({ formData }: Props) => {
     try {
       setisLoading(true);
       const res = await fetch(`${BACKEND_API_URL}/api/client/register`, {
@@ -25,6 +25,7 @@ export const useClientApi = () => {
       });
 
       const data = await res.json();
+      console.log(data);
 
       setisLoading(false);
       if (!data.success) {

@@ -23,13 +23,14 @@ export const useCivilApi = () => {
     const res = await fetch(`${BACKEND_API_URL}/api/auth/register`, {
       method: "POST",
       headers: {
-        "Content-Type": "Application/json",
+        "Content-Type": "application/json",
       },
       credentials: "include",
       body: JSON.stringify(formData),
     });
 
     const data = await res.json();
+    console.log(data);
     setisLoading(false);
     if (!data.success) {
       toast.error(data.message);
@@ -53,7 +54,8 @@ export const useCivilApi = () => {
     });
 
     const data = await res.json();
-
+    console.log("User Login", data);
+    
     if (data.success === false) {
       toast.warning(data.message);
       dispatch(fetchFail());
