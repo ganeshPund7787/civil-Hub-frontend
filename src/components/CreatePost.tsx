@@ -33,8 +33,8 @@ const formSchema = z.object({
 export type PostFormData = z.infer<typeof formSchema>;
 
 const CreatePost = () => {
-  const { CurrentCivilUser, loading } = useAppSelectore((state) => state.user);
-  const { Client, Clientloading } = useAppSelectore((state) => state.client);
+  const { CurrentCivilUser } = useAppSelectore((state) => state.user);
+  const { Client } = useAppSelectore((state) => state.client);
 
   const { storeImage, uploading } = useUploadImg();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -64,7 +64,7 @@ const CreatePost = () => {
       const photoUrl = await storeImage(imageFile);
       values.image = photoUrl;
     }
-    console.log(values);
+
     createPost({ formData: values });
     setComplite(true);
     setImageFileUrl("");
@@ -145,7 +145,7 @@ const CreatePost = () => {
               </Button>
               {!isComplite ? (
                 <Button
-                  disabled={loading || Clientloading || uploading}
+                  disabled={uploading}
                   className={`disabled:cursor-pointer disabled:bg-cyan-300  bg-cyan-500 rounded`}
                   type="submit"
                   variant="ghost"

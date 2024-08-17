@@ -39,8 +39,7 @@ export const SocketContextProvider: React.FC<SocketContextProviderProps> = ({
 
   useEffect(() => {
     if (CurrentCivilUser || Client) {
-      const socket = io("http://localhost:4444", {
-        // https://civil-hub-backend.onrender.com
+      const socket = io("https://civili-hub.onrender.com", {
         query: {
           userId: CurrentCivilUser?._id || Client?._id,
         },

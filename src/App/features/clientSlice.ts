@@ -8,8 +8,8 @@ export interface ClientState {
 }
 
 const initialState: ClientState = {
-  Client: localStorage.getItem("client")
-    ? JSON.parse(localStorage.getItem("client") as string)
+  Client: sessionStorage.getItem("client")
+    ? JSON.parse(sessionStorage.getItem("client") as string)
     : null,
   Clientloading: false,
   isUpdate: false,
@@ -28,7 +28,7 @@ export const ClientSlice = createSlice({
     fetchSuccessClient: (state, action: PayloadAction<ClientType>) => {
       state.Clientloading = false;
       state.Client = action.payload;
-      localStorage.setItem("client", JSON.stringify(action.payload));
+      sessionStorage.setItem("client", JSON.stringify(action.payload));
     },
     updateStartClient: (state) => {
       state.isUpdate = true;
@@ -41,12 +41,12 @@ export const ClientSlice = createSlice({
       state.Clientloading = false;
       state.Client = action.payload;
       state.isUpdate = false;
-      localStorage.setItem("client", JSON.stringify(action.payload));
+      sessionStorage.setItem("client", JSON.stringify(action.payload));
     },
     logOutClient: (state) => {
       state.Clientloading = false;
       state.Client = null;
-      localStorage.clear();
+      sessionStorage.clear();
     },
   },
 });

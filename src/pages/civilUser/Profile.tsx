@@ -1,6 +1,5 @@
 import { useAppSelectore } from "@/App/store";
 import { SlLocationPin } from "react-icons/sl";
-import { RiChatDeleteLine } from "react-icons/ri";
 import AddLanguage from "@/components/civilUser/AddLanguage";
 import AddEducation from "@/components/civilUser/AddEducation";
 import AddSkills from "@/components/civilUser/AddSkills";
@@ -98,10 +97,6 @@ const Profile = () => {
                             className="border flex items-center justify-between hover:bg-slate-800 hover:border-cyan-500 border-slate-600 rounded-full w-full px-8 py-2 "
                           >
                             {language}
-                            <RiChatDeleteLine
-                              className="cursor-pointer hover:text-red-500"
-                              size={20}
-                            />
                           </span>
                         ))}
                     </div>

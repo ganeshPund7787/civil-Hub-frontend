@@ -32,7 +32,7 @@ const ProjectSection = ({ user }: Props) => {
       <div className="">
         {user?.projects?.length > 0 &&
           user?.projects?.map((Project: ProjectsType) => (
-            <div className="" key={Project.id}>
+            <div className="" key={Project._id}>
               <ProjectCard Project={Project} />
             </div>
           ))}

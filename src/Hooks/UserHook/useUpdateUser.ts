@@ -1,6 +1,7 @@
 import { BACKEND_API_URL } from "@/main";
 
 import {
+  fetchFail,
   fetchStart,
   updateFail,
   updateSuccess,
@@ -122,7 +123,30 @@ const useUpdateUser = () => {
     }
   };
 
-  return { update, addLanAndEducation, UpdateOther };
+  const DeleteProject = async (id: string | any) => {
+    try {
+      disptch(fetchStart());
+      const res = await fetch(
+        `${BACKEND_API_URL}/api/user/delete-Project/${id}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+
+      if (data.success === false) {
+        toast(data?.message);
+        disptch(fetchFail());
+        return;
+      }
+      toast.success("Project Deleted success");
+      disptch(updateSuccess(data.updatedUser));
+    } catch (error: any) {
+      console.log(`Error while delete Projects`, error.message);
+    }
+  };
+  return { update, addLanAndEducation, UpdateOther, DeleteProject };
 };
 
 export default useUpdateUser;

@@ -1,3 +1,4 @@
+import useUpdateUser from "@/Hooks/UserHook/useUpdateUser";
 import { ProjectsType } from "@/types";
 import { MdDelete } from "react-icons/md";
 
@@ -14,6 +15,7 @@ const ProjectCard = ({ Project }: Props) => {
     }
     return isNaN(date.getTime()) ? undefined : date;
   };
+  const { DeleteProject } = useUpdateUser();
 
   const formatDate = (date: Date | undefined): string => {
     if (!date) {
@@ -29,6 +31,7 @@ const ProjectCard = ({ Project }: Props) => {
           {Project.title}
         </h1>
         <MdDelete
+          onClick={() => DeleteProject(Project._id)}
           className="hover:text-red-500 hover:border-red-500 cursor-pointer border border-cyan-500 p-2 rounded-full"
           size={40}
         />

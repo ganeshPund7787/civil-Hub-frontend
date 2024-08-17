@@ -8,8 +8,8 @@ export interface PersonState {
 }
 
 const initialState: PersonState = {
-  CurrentCivilUser: localStorage.getItem("CurrentCivilUser")
-    ? JSON.parse(localStorage.getItem("CurrentCivilUser") as string)
+  CurrentCivilUser: sessionStorage.getItem("CurrentCivilUser")
+    ? JSON.parse(sessionStorage.getItem("CurrentCivilUser") as string)
     : null,
   loading: false,
   isAddProject: false,
@@ -28,7 +28,10 @@ export const civilUserSlice = createSlice({
     fetchSuccess: (state, action: PayloadAction<CivilUserType>) => {
       state.loading = false;
       state.CurrentCivilUser = action.payload;
-      localStorage.setItem("CurrentCivilUser", JSON.stringify(action.payload));
+      sessionStorage.setItem(
+        "CurrentCivilUser",
+        JSON.stringify(action.payload)
+      );
     },
     updateFail: (state) => {
       state.loading = false;
@@ -36,7 +39,10 @@ export const civilUserSlice = createSlice({
     updateSuccess: (state, action: PayloadAction<CivilUserType>) => {
       state.loading = false;
       state.CurrentCivilUser = action.payload;
-      localStorage.setItem("CurrentCivilUser", JSON.stringify(action.payload));
+      sessionStorage.setItem(
+        "CurrentCivilUser",
+        JSON.stringify(action.payload)
+      );
     },
     startAddProject: (state) => {
       state.isAddProject = true;
@@ -47,7 +53,7 @@ export const civilUserSlice = createSlice({
     logOutuser: (state) => {
       state.loading = false;
       state.CurrentCivilUser = null;
-      localStorage.clear();
+      sessionStorage.clear();
     },
   },
 });
